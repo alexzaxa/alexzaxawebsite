@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Digital menu preview style από τον Alex Zaxa." />
+  <meta name="theme-color" content="#06111b" />
+  <title>Digital Menu Preview Style | Alex Zaxa</title>
+  <link rel="stylesheet" href="../demo-styles.css" />
+  <script src="../demo-script.js" defer></script>
+  <script src="../menu-filter.js" defer></script>
+</head>
+<body class="digital-menu">
+  <a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
+  <header class="demo-topbar"><nav class="demo-nav container" aria-label="Digital menu preview navigation"><a class="demo-brand" href="../../index.html"><span class="demo-mark" aria-hidden="true">AZ</span><span>Digital menu preview style</span></a><div class="demo-links"><a href="../index.html">Όλα τα preview</a><a href="../../index.html">Αρχική</a><a href="../../index.html#contact" class="btn-primary">Request this style</a></div></nav></header>
+  <main id="main">
+    <section class="hero"><div class="container hero-inner"><div class="reveal"><p class="eyebrow">Clean app-like menu</p><h1>Digital menu που δουλεύει γρήγορα και καθαρά στο κινητό.</h1><p class="lead">Ιδανικό για καφέ, εστιατόριο ή restobar που θέλει καθαρές κατηγορίες, εύκολη ανάγνωση και γρήγορη πλοήγηση. Τα πραγματικά προϊόντα, περιγραφές και τιμές μπαίνουν μετά από το μενού της επιχείρησης.</p><div class="hero-actions"><a class="btn btn-primary" href="../../index.html#contact">Θέλω αυτό το στυλ</a><a class="btn btn-soft" href="#menu">Δοκίμασε τα φίλτρα</a></div></div><div class="visual-card reveal delay-1"><div class="visual-lines"><span></span><span></span><span></span></div><div class="visual-bottom"><span class="badge">Categories • Filters • Mobile UX</span><h2>Γρήγορη πλοήγηση για κάθε πελάτη</h2><p>Τα φίλτρα παρακάτω είναι λειτουργικά.</p></div></div></div></section>
+
+    <section class="section" id="menu">
+      <div class="container">
+        <div class="section-heading center reveal"><p class="eyebrow">Interactive category filters</p><h2>Παράδειγμα δομής menu με λειτουργικά φίλτρα.</h2><p>Αν η JavaScript είναι απενεργοποιημένη, όλα τα προϊόντα παραμένουν ορατά.</p></div>
+        <div class="filter-bar reveal" aria-label="Φίλτρα κατηγοριών menu">
+          <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">Όλα</button>
+          <button class="filter-btn" type="button" data-filter="coffee" aria-pressed="false">Καφέδες</button>
+          <button class="filter-btn" type="button" data-filter="food" aria-pressed="false">Snacks</button>
+          <button class="filter-btn" type="button" data-filter="drinks" aria-pressed="false">Ροφήματα</button>
+          <button class="filter-btn" type="button" data-filter="sweet" aria-pressed="false">Γλυκά</button>
+        </div>
+        <div class="menu-list" id="menu-list">
+          <article class="menu-card reveal" data-category="coffee"><div class="menu-meta"><span>Καφές</span><span>Category</span></div><h3>Espresso based επιλογές</h3><p>Χώρος για espresso, cappuccino, latte και κρύες επιλογές με καθαρή περιγραφή.</p></article>
+          <article class="menu-card reveal delay-1" data-category="coffee"><div class="menu-meta"><span>Καφές</span><span>Mobile</span></div><h3>Cold coffee section</h3><p>Ιδανικό για freddo, iced latte και signature επιλογές.</p></article>
+          <article class="menu-card reveal delay-2" data-category="food"><div class="menu-meta"><span>Snacks</span><span>Popular</span></div><h3>Sandwiches & γρήγορα snacks</h3><p>Καθαρή παρουσίαση για προϊόντα που παραγγέλνονται συχνά.</p></article>
+          <article class="menu-card reveal" data-category="food"><div class="menu-meta"><span>Snacks</span><span>Fresh</span></div><h3>Πρωινές επιλογές</h3><p>Ενότητα για πρωινό, σφολιάτες ή ελαφριές επιλογές.</p></article>
+          <article class="menu-card reveal delay-1" data-category="drinks"><div class="menu-meta"><span>Ροφήματα</span><span>Cold</span></div><h3>Αναψυκτικά και κρύα ροφήματα</h3><p>Δομή για juices, ice tea, αναψυκτικά ή special drinks.</p></article>
+          <article class="menu-card reveal delay-2" data-category="sweet"><div class="menu-meta"><span>Γλυκά</span><span>Style</span></div><h3>Γλυκές επιλογές</h3><p>Χώρος για waffles, pancakes, cakes ή seasonal desserts.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section"><div class="container grid-3"><article class="feature-card reveal"><span class="icon" aria-hidden="true">✓</span><h3>Κατηγορίες</h3><p>Ο πελάτης βρίσκει γρήγορα αυτό που θέλει χωρίς μεγάλη κύλιση.</p></article><article class="feature-card reveal delay-1"><span class="icon" aria-hidden="true">↯</span><h3>Fast mobile UX</h3><p>Ελαφριά σελίδα χωρίς περιττές βιβλιοθήκες και βαριές λειτουργίες.</p></article><article class="feature-card reveal delay-2"><span class="icon" aria-hidden="true">◎</span><h3>Προσαρμογή</h3><p>Οι κατηγορίες και τα προϊόντα αλλάζουν ανάλογα με το πραγματικό μενού.</p></article></div></section>
+    <section class="section"><div class="container cta-panel reveal"><div><p class="eyebrow">Customize it</p><h2>Αυτό το digital menu style μπορεί να συνδεθεί από QR, Instagram bio ή Google Maps profile.</h2></div><a class="btn btn-primary" href="../../index.html#contact">Request this style</a></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><span>Preview style by Alex Zaxa</span><a href="../../index.html#contact">Ζήτησε ιστοσελίδα</a></div></footer>
+</body>
+</html>
