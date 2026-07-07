@@ -4,12 +4,6 @@ Static personal business website for **Alex Zaxa**, focused on creating and rede
 
 The project is Greek-first, mobile-first, fast, animated, static-hosting friendly, and ready to upload without a build step.
 
-## Private use / ownership notice
-
-This project is **private and for Alex Zaxa's use only**. It is not open-source, not a public template, and not intended for normal use by anyone other than Alex Zaxa, the creator.
-
-No one may copy, host, publish, resell, redistribute, modify, or use this project or its files without written permission from Alex Zaxa. Unauthorized use is not allowed. If unauthorized use is found, Alex Zaxa reserves the right to seek legal advice and take appropriate legal action.
-
 ## Project structure
 
 ```text
@@ -20,7 +14,6 @@ thanks.html
 404.html
 privacy.html
 README.md
-LICENSE.txt
 .htaccess
 _headers
 robots.txt
@@ -90,39 +83,6 @@ Cloudflare Pages reads `_headers` and applies the static security headers.
 4. Deploy.
 
 Netlify also supports the `_headers` file.
-
-
-## Pricing
-
-The website pricing section uses exact base prices in euros:
-
-- Starter Website — Τιμή: 99€
-- Business Website — Τιμή: 199€
-- Premium Redesign — Τιμή: 349€
-
-Business Website is highlighted as the recommended option. The cards show the exact price, and the interactive pricing panel shows the selected package, what is included, estimated delivery, optional extras, and a CTA to the contact form.
-
-The contact form includes a package dropdown with these options:
-
-- Starter Website — 99€
-- Business Website — 199€
-- Premium Redesign — 349€
-- Δεν είμαι σίγουρος / θέλω πρόταση
-
-When a visitor selects a package, the form updates:
-
-- visible selected package summary
-- hidden `selected_package` value
-- `package_interest` dropdown
-- `request_context`
-- email subject for FormSubmit
-- prefilled message when selected through a package CTA
-
-Pricing note used on the site:
-
-> Οι τιμές αφορούν τη βασική υλοποίηση κάθε πακέτου. Η τελική τιμή μπορεί να αλλάξει μόνο αν ζητηθούν extra λειτουργίες, περισσότερες σελίδες, επιπλέον γλώσσες ή ειδικές αλλαγές.
-
-Optional extras are shown separately so visitors understand that the base prices are Starter 99€, Business 199€, and Premium 349€.
 
 ## Contact form setup
 
@@ -250,46 +210,25 @@ The site includes:
 
 This is a static website. No backend, database, build system, or paid hosting is required.
 
+## GitHub Pages layout/visual fix
 
-## Prefilled request links
+This version includes a GitHub Pages visual fix for cases where the page looks correct locally but broken online.
 
-Demo and package buttons use query parameters such as `?style=cafe#contact`, `?package=business#packages`, or `?package=business#contact`.
-When a visitor clicks a “Request this style” button, the contact form automatically fills the business type, website type, message, hidden request context, and email subject. When a visitor chooses a package, the pricing panel and contact form update with the exact selected package and price.
+What was changed:
 
-Available style values:
+- CSS and JavaScript links now use relative paths with a cache-busting version query, for example `./styles.css?v=github-layout-fix-20260707`.
+- A `.nojekyll` file is included so GitHub Pages serves the project as a plain static site.
+- Preview/demo links point directly to `index.html` files instead of folders.
+- The pricing/package section has a visible HTML fallback, so it still looks correct even if JavaScript loads late or fails.
 
-- `style=cafe`
-- `style=restaurant`
-- `style=digital-menu`
-- `style=shop`
-- `style=service-business`
-- `style=personal-brand`
+If GitHub Pages still shows the old broken layout:
 
-Available package values:
-
-- `package=starter` → Starter Website — 99€
-- `package=business` → Business Website — 199€
-- `package=premium-redesign` → Premium Redesign — 349€
-
-
-
-## Security / privacy notes
-
-This project is static, so there is no server-side login area or database in the files. The main risks are broken links, spam through the contact form, unsafe third-party links, and weak hosting headers.
-
-Included hardening:
-
-- `_headers` for Cloudflare Pages and Netlify with frame protection, nosniff, referrer policy, permissions policy, and CSP.
-- `.htaccess` fallback headers for Apache hosting, plus `Options -Indexes` to reduce directory listing risk on Apache.
-- External links that open in a new tab use `rel="noopener noreferrer"`.
-- The contact form keeps FormSubmit captcha enabled, uses a honeypot, maxlength limits, browser validation, consent checkbox, and double-submit protection.
-- The success redirect is set by JavaScript on hosted pages so it works with GitHub Pages project paths, Cloudflare Pages, and Netlify.
-
-After connecting a real domain, update these placeholder values:
-
-- canonical URLs in `index.html` and `privacy.html`
-- `og:url` / `og:image` in `index.html`
-- `robots.txt`
-- `sitemap.xml`
-
-No static header can fully stop spam or guarantee email delivery. Test the form after publishing and keep the first FormSubmit confirmation email.
+1. Make sure **all files** are uploaded to the repository root, not only `index.html`.
+2. Wait 1–2 minutes for GitHub Pages to redeploy.
+3. Open the page in an incognito window or hard refresh with `Ctrl + F5`.
+4. Check that these files open in the browser:
+   - `styles.css`
+   - `script.js`
+   - `demos/demo-styles.css`
+   - `demos/demo-script.js`
+5. If you changed the repository name or use a custom domain later, update the canonical URL, sitemap URL, and Open Graph URL placeholders.
