@@ -209,3 +209,47 @@ The site includes:
 ## Notes
 
 This is a static website. No backend, database, build system, or paid hosting is required.
+
+
+## Prefilled request links
+
+Demo and package buttons use query parameters such as `?style=cafe#contact` or `?package=business#contact`.
+When a visitor clicks a “Request this style” button, the contact form automatically fills the business type, website type, message, hidden request context, and email subject. This helps the visitor understand what to write and helps Alex know which preview/package they selected.
+
+Available style values:
+
+- `style=cafe`
+- `style=restaurant`
+- `style=digital-menu`
+- `style=shop`
+- `style=service-business`
+- `style=personal-brand`
+
+Available package values:
+
+- `package=starter`
+- `package=business`
+- `package=premium-redesign`
+
+
+
+## Security / privacy notes
+
+This project is static, so there is no server-side login area or database in the files. The main risks are broken links, spam through the contact form, unsafe third-party links, and weak hosting headers.
+
+Included hardening:
+
+- `_headers` for Cloudflare Pages and Netlify with frame protection, nosniff, referrer policy, permissions policy, and CSP.
+- `.htaccess` fallback headers for Apache hosting, plus `Options -Indexes` to reduce directory listing risk on Apache.
+- External links that open in a new tab use `rel="noopener noreferrer"`.
+- The contact form keeps FormSubmit captcha enabled, uses a honeypot, maxlength limits, browser validation, consent checkbox, and double-submit protection.
+- The success redirect is set by JavaScript on hosted pages so it works with GitHub Pages project paths, Cloudflare Pages, and Netlify.
+
+After connecting a real domain, update these placeholder values:
+
+- canonical URLs in `index.html` and `privacy.html`
+- `og:url` / `og:image` in `index.html`
+- `robots.txt`
+- `sitemap.xml`
+
+No static header can fully stop spam or guarantee email delivery. Test the form after publishing and keep the first FormSubmit confirmation email.

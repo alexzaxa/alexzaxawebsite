@@ -335,6 +335,27 @@ p { margin: 0; color: var(--muted); }
 }
 .contact-chips a:hover { color: var(--text); border-color: rgba(85,216,255,.35); }
 .contact-form { border-radius: 28px; padding: clamp(1rem, 3vw, 2rem); display: grid; gap: 1rem; }
+.selected-request {
+  border: 1px solid rgba(85,216,255,.32);
+  background:
+    radial-gradient(circle at top left, rgba(85,216,255,.18), transparent 36%),
+    linear-gradient(135deg, rgba(85,216,255,.09), rgba(57,230,176,.08));
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 18px 50px rgba(0,0,0,.22);
+}
+.selected-request[hidden] { display: none !important; }
+.selected-request-label {
+  display: inline-flex;
+  margin-bottom: .45rem;
+  color: var(--primary);
+  font-size: .78rem;
+  font-weight: 950;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.selected-request strong { display: block; font-size: 1.04rem; }
+.selected-request p { margin-top: .35rem; color: var(--muted-strong); font-size: .94rem; line-height: 1.65; }
 .form-row.two-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 label { display: grid; gap: .45rem; color: var(--text); font-weight: 900; }
 input, select, textarea {

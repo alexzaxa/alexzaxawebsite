@@ -7,6 +7,7 @@
   <meta name="author" content="Alex Zaxa" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#07101d" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="canonical" href="https://your-domain.example/" />
 
   <meta property="og:title" content="Alex Zaxa | Ιστοσελίδες για Τοπικές Επιχειρήσεις" />
@@ -26,7 +27,7 @@
   <title>Alex Zaxa | Κατασκευή Ιστοσελίδων για Τοπικές Επιχειρήσεις</title>
   <link rel="preconnect" href="https://formsubmit.co" />
   <link rel="stylesheet" href="styles.css" />
-  <script type="application/ld+json">
+  <script type="application/ld+json" nonce="az-schema-20260707">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -273,7 +274,7 @@
               <li>Email, Instagram και χάρτης</li>
               <li>Βασικό SEO setup</li>
             </ul>
-            <a href="#contact" class="btn btn-package">Ρώτα για Starter</a>
+            <a href="index.html?package=starter#contact" class="btn btn-package">Ρώτα για Starter</a>
           </article>
           <article class="package-card featured reveal delay-1">
             <span class="package-label">Business Website</span>
@@ -286,7 +287,7 @@
               <li>Google Maps & social links</li>
               <li>Πιο αναλυτική δομή για πελάτες</li>
             </ul>
-            <a href="#contact" class="btn btn-primary">Ρώτα για Business</a>
+            <a href="index.html?package=business#contact" class="btn btn-primary">Ρώτα για Business</a>
           </article>
           <article class="package-card reveal delay-2">
             <span class="package-label">Premium Redesign</span>
@@ -299,7 +300,7 @@
               <li>Πιο δυνατά CTA sections</li>
               <li>Hosting guidance</li>
             </ul>
-            <a href="#contact" class="btn btn-package">Ρώτα για Redesign</a>
+            <a href="index.html?package=premium-redesign#contact" class="btn btn-package">Ρώτα για Redesign</a>
           </article>
         </div>
       </div>
@@ -376,11 +377,19 @@
           </div>
         </div>
 
-        <form class="contact-form reveal delay-1" id="request-form" action="https://formsubmit.co/alexzaxa70@gmail.com" method="POST">
-          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="honeypot" aria-hidden="true" />
-          <input type="hidden" name="_subject" value="New website request for Alex Zaxa" />
+        <form class="contact-form reveal delay-1" id="request-form" action="https://formsubmit.co/alexzaxa70@gmail.com" method="POST" accept-charset="UTF-8">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" maxlength="1" class="honeypot" aria-hidden="true" />
+          <input type="hidden" name="_subject" id="form-subject" value="New website request for Alex Zaxa" />
           <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_blacklist" value="casino,viagra,crypto,loan,forex,betting,porn" />
           <input type="hidden" name="_next" id="form-next" value="thanks.html" />
+          <input type="hidden" name="request_context" id="request-context" value="General website request" />
+
+          <div class="selected-request" id="selected-request" hidden>
+            <span class="selected-request-label">Επιλεγμένο αίτημα</span>
+            <strong id="selected-request-title">Website request</strong>
+            <p id="selected-request-text">Έχω προετοιμάσει τη φόρμα με βάση αυτό που επέλεξες. Μπορείς να αλλάξεις ό,τι θέλεις πριν το στείλεις.</p>
+          </div>
 
           <div class="form-row two-fields">
             <label>Όνομα
@@ -409,10 +418,10 @@
 
           <div class="form-row two-fields">
             <label>Email
-              <input type="email" name="email" autocomplete="email" maxlength="120" required placeholder="email@example.com" />
+              <input type="email" name="email" autocomplete="email" inputmode="email" maxlength="120" required placeholder="email@example.com" />
             </label>
             <label>Τηλέφωνο
-              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="24" pattern="^[0-9+() .-]{7,24}$" placeholder="Προαιρετικά" />
+              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="24" pattern="^[0-9+() .-]{7,24}$" title="Χρησιμοποίησε μόνο αριθμούς, κενά, +, παύλες ή παρενθέσεις." placeholder="Προαιρετικά" />
             </label>
           </div>
 
