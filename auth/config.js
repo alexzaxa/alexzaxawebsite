@@ -4,6 +4,7 @@
 window.ALEX_AUTH_CONFIG = {
   supabaseUrl: 'https://hbfkgkrhgzkllxxavwxc.supabase.co',
   supabaseAnonKey: 'sb_publishable_dt6RvkHbZTrkiCn9KaBGug_CZxEQz5J',
+  siteUrl: 'https://alexzaxa.github.io/alexzaxawebsite/index.html',
   accountPage: './account.html',
   loginPage: './login.html'
 };
