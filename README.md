@@ -4,6 +4,12 @@ Static personal business website for **Alex Zaxa**, focused on creating and rede
 
 The project is Greek-first, mobile-first, fast, animated, static-hosting friendly, and ready to upload without a build step.
 
+## Private use / ownership notice
+
+This project is **private and for Alex Zaxa's use only**. It is not open-source, not a public template, and not intended for normal use by anyone other than Alex Zaxa, the creator.
+
+No one may copy, host, publish, resell, redistribute, modify, or use this project or its files without written permission from Alex Zaxa. Unauthorized use is not allowed. If unauthorized use is found, Alex Zaxa reserves the right to seek legal advice and take appropriate legal action.
+
 ## Project structure
 
 ```text
@@ -14,6 +20,7 @@ thanks.html
 404.html
 privacy.html
 README.md
+LICENSE.txt
 .htaccess
 _headers
 robots.txt
@@ -83,6 +90,39 @@ Cloudflare Pages reads `_headers` and applies the static security headers.
 4. Deploy.
 
 Netlify also supports the `_headers` file.
+
+
+## Pricing
+
+The website pricing section uses exact base prices in euros:
+
+- Starter Website — Τιμή: 99€
+- Business Website — Τιμή: 199€
+- Premium Redesign — Τιμή: 349€
+
+Business Website is highlighted as the recommended option. The cards show the exact price, and the interactive pricing panel shows the selected package, what is included, estimated delivery, optional extras, and a CTA to the contact form.
+
+The contact form includes a package dropdown with these options:
+
+- Starter Website — 99€
+- Business Website — 199€
+- Premium Redesign — 349€
+- Δεν είμαι σίγουρος / θέλω πρόταση
+
+When a visitor selects a package, the form updates:
+
+- visible selected package summary
+- hidden `selected_package` value
+- `package_interest` dropdown
+- `request_context`
+- email subject for FormSubmit
+- prefilled message when selected through a package CTA
+
+Pricing note used on the site:
+
+> Οι τιμές αφορούν τη βασική υλοποίηση κάθε πακέτου. Η τελική τιμή μπορεί να αλλάξει μόνο αν ζητηθούν extra λειτουργίες, περισσότερες σελίδες, επιπλέον γλώσσες ή ειδικές αλλαγές.
+
+Optional extras are shown separately so visitors understand that the base prices are Starter 99€, Business 199€, and Premium 349€.
 
 ## Contact form setup
 
@@ -213,8 +253,8 @@ This is a static website. No backend, database, build system, or paid hosting is
 
 ## Prefilled request links
 
-Demo and package buttons use query parameters such as `?style=cafe#contact` or `?package=business#contact`.
-When a visitor clicks a “Request this style” button, the contact form automatically fills the business type, website type, message, hidden request context, and email subject. This helps the visitor understand what to write and helps Alex know which preview/package they selected.
+Demo and package buttons use query parameters such as `?style=cafe#contact`, `?package=business#packages`, or `?package=business#contact`.
+When a visitor clicks a “Request this style” button, the contact form automatically fills the business type, website type, message, hidden request context, and email subject. When a visitor chooses a package, the pricing panel and contact form update with the exact selected package and price.
 
 Available style values:
 
@@ -227,9 +267,9 @@ Available style values:
 
 Available package values:
 
-- `package=starter`
-- `package=business`
-- `package=premium-redesign`
+- `package=starter` → Starter Website — 99€
+- `package=business` → Business Website — 199€
+- `package=premium-redesign` → Premium Redesign — 349€
 
 
 
@@ -253,6 +293,3 @@ After connecting a real domain, update these placeholder values:
 - `sitemap.xml`
 
 No static header can fully stop spam or guarantee email delivery. Test the form after publishing and keep the first FormSubmit confirmation email.
-
-This project is private and for Alex Zaxa’s use only. It is not open-source, not a public template, and not intended for normal use by anyone other than Alex Zaxa, the creator.
-No one may copy, host, publish, resell, redistribute, modify, or use this project or its files without written permission from Alex Zaxa. Unauthorized use is not allowed. If unauthorized use is found, Alex Zaxa reserves the right to seek legal advice and take appropriate legal action.

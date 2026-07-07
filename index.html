@@ -258,41 +258,45 @@
     <section class="section packages" id="packages">
       <div class="container">
         <div class="section-heading center reveal">
-          <p class="eyebrow">Πακέτα</p>
-          <h2>Απλές επιλογές χωρίς μπερδεμένες τιμές.</h2>
-          <p class="section-subtitle">Η τελική τιμή εξαρτάται από το μέγεθος, το υλικό και τις ανάγκες του project. Πρώτα βλέπουμε τι χρειάζεται η επιχείρηση και μετά προτείνω την πιο σωστή λύση.</p>
+          <p class="eyebrow">Πακέτα & τιμές</p>
+          <h2>Ξεκάθαρα πακέτα με επαγγελματική παρουσίαση.</h2>
+          <p class="section-subtitle">Διάλεξε το πακέτο που ταιριάζει καλύτερα στην επιχείρησή σου και δες αμέσως τι περιλαμβάνει. Οι βασικές τιμές είναι καθαρές, χωρίς να μοιάζει με απλό template.</p>
         </div>
-        <div class="package-grid">
-          <article class="package-card reveal">
+        <div class="package-grid" aria-label="Πακέτα ιστοσελίδων">
+          <article class="package-card reveal" data-package-card="starter">
             <span class="package-label">Starter Website</span>
+            <strong class="package-price">Τιμή: 99€</strong>
             <h3>Ιδανικό για απλή παρουσίαση</h3>
-            <p>Για επιχείρηση που θέλει γρήγορη, καθαρή online παρουσία χωρίς περίπλοκες ενότητες.</p>
+            <p>Για επιχείρηση που θέλει γρήγορη, καθαρή και επαγγελματική online παρουσία χωρίς περίπλοκες ενότητες.</p>
             <ul>
               <li>One-page website</li>
-              <li>Mobile-first layout</li>
-              <li>Βασικές υπηρεσίες / πληροφορίες</li>
-              <li>Email, Instagram και χάρτης</li>
+              <li>Mobile-first σχεδιασμός</li>
+              <li>Βασικές πληροφορίες επιχείρησης</li>
+              <li>Email / Instagram / χάρτης</li>
               <li>Βασικό SEO setup</li>
             </ul>
-            <a href="index.html?package=starter#contact" class="btn btn-package">Ρώτα για Starter</a>
+            <a href="index.html?package=starter#packages" class="btn btn-package" data-package-button="starter" aria-controls="pricing-panel" aria-expanded="false">Δες Starter Website</a>
           </article>
-          <article class="package-card featured reveal delay-1">
+          <article class="package-card featured reveal delay-1" data-package-card="business">
+            <span class="recommend-badge">Προτείνεται</span>
             <span class="package-label">Business Website</span>
-            <h3>Ιδανικό για ολοκληρωμένη εικόνα</h3>
-            <p>Για καφέ, εστιατόριο, κατάστημα ή υπηρεσία που θέλει πιο γεμάτη και επαγγελματική παρουσία.</p>
+            <strong class="package-price">Τιμή: 199€</strong>
+            <h3>Ιδανικό για επιχείρηση που θέλει ολοκληρωμένη εικόνα</h3>
+            <p>Για καφέ, εστιατόριο, κατάστημα ή υπηρεσία που θέλει πιο γεμάτη, σοβαρή και επαγγελματική παρουσία.</p>
             <ul>
               <li>Πολλαπλές ενότητες</li>
               <li>Gallery / προϊόντα / υπηρεσίες</li>
               <li>Contact form</li>
               <li>Google Maps & social links</li>
-              <li>Πιο αναλυτική δομή για πελάτες</li>
+              <li>Δομή για Instagram / Google Maps traffic</li>
             </ul>
-            <a href="index.html?package=business#contact" class="btn btn-primary">Ρώτα για Business</a>
+            <a href="index.html?package=business#packages" class="btn btn-primary" data-package-button="business" aria-controls="pricing-panel" aria-expanded="false">Δες Business Website</a>
           </article>
-          <article class="package-card reveal delay-2">
+          <article class="package-card reveal delay-2" data-package-card="premium-redesign">
             <span class="package-label">Premium Redesign</span>
+            <strong class="package-price">Τιμή: 349€</strong>
             <h3>Ιδανικό για redesign ή premium αποτέλεσμα</h3>
-            <p>Για επιχείρηση που έχει ήδη παρουσία αλλά θέλει να δείχνει πιο μοντέρνα, σοβαρή και ξεχωριστή.</p>
+            <p>Για επιχείρηση που έχει ήδη παρουσία ή θέλει πιο premium αποτέλεσμα με καλύτερη αισθητική, UX και εμπιστοσύνη.</p>
             <ul>
               <li>Ανασχεδιασμός υπάρχουσας σελίδας</li>
               <li>Premium αισθητική</li>
@@ -300,8 +304,49 @@
               <li>Πιο δυνατά CTA sections</li>
               <li>Hosting guidance</li>
             </ul>
-            <a href="index.html?package=premium-redesign#contact" class="btn btn-package">Ρώτα για Redesign</a>
+            <a href="index.html?package=premium-redesign#packages" class="btn btn-package" data-package-button="premium-redesign" aria-controls="pricing-panel" aria-expanded="false">Δες Premium Redesign</a>
           </article>
+        </div>
+
+        <div class="pricing-note reveal" role="note">
+          <strong>Σημείωση τιμών:</strong>
+          <span>Οι τιμές αφορούν τη βασική υλοποίηση κάθε πακέτου. Η τελική τιμή μπορεί να αλλάξει μόνο αν ζητηθούν extra λειτουργίες, περισσότερες σελίδες, επιπλέον γλώσσες ή ειδικές αλλαγές.</span>
+        </div>
+
+        <div class="pricing-panel reveal" id="pricing-panel" tabindex="-1" aria-live="polite">
+          <div class="pricing-placeholder" id="pricing-placeholder">
+            <p class="eyebrow">Interactive επιλογή</p>
+            <h3>Επίλεξε πακέτο για να δεις καθαρά τι περιλαμβάνει.</h3>
+            <p>Οι βασικές τιμές είναι Starter 99€, Business 199€ και Premium 349€. Με την επιλογή πακέτου ενημερώνεται αυτόματα και η φόρμα επικοινωνίας.</p>
+          </div>
+
+          <div class="pricing-content" id="pricing-content" hidden>
+            <div class="pricing-main">
+              <p class="eyebrow">Επιλεγμένο πακέτο</p>
+              <h3 id="pricing-name">Starter Website</h3>
+              <p class="pricing-large" id="pricing-price">Τιμή: 99€</p>
+              <p class="pricing-desc" id="pricing-description"></p>
+              <div class="pricing-meta">
+                <span id="pricing-delivery"></span>
+                <span id="pricing-good-for"></span>
+              </div>
+              <a href="index.html?package=starter#contact" class="btn btn-primary pricing-cta" id="pricing-cta">Θέλω Starter Website — 99€</a>
+            </div>
+            <div class="pricing-list-block">
+              <h4>Τι περιλαμβάνει</h4>
+              <ul class="pricing-checklist" id="pricing-includes"></ul>
+            </div>
+            <div class="pricing-list-block extras-block">
+              <h4>Προαιρετικά extras</h4>
+              <p>Τα παρακάτω είναι ξεχωριστά από τη βασική τιμή και ισχύουν μόνο αν τα χρειάζεται το project.</p>
+              <ul class="pricing-extras" id="pricing-extras"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-hosting-note reveal">
+          <p>Μπορώ να σε βοηθήσω να το ανεβάσεις σε GitHub Pages, Cloudflare Pages ή Netlify και να συνδέσεις domain όταν είσαι έτοιμος.</p>
+          <p>Το hosting μπορεί να γίνει με χαμηλό ή μηδενικό κόστος ανάλογα με την πλατφόρμα.</p>
         </div>
       </div>
     </section>
@@ -384,6 +429,7 @@
           <input type="hidden" name="_blacklist" value="casino,viagra,crypto,loan,forex,betting,porn" />
           <input type="hidden" name="_next" id="form-next" value="thanks.html" />
           <input type="hidden" name="request_context" id="request-context" value="General website request" />
+          <input type="hidden" name="selected_package" id="selected-package" value="" />
 
           <div class="selected-request" id="selected-request" hidden>
             <span class="selected-request-label">Επιλεγμένο αίτημα</span>
@@ -416,6 +462,16 @@
             </label>
           </div>
 
+          <label>Τι σε ενδιαφέρει;
+            <select name="package_interest" id="package-interest">
+              <option value="">Επίλεξε πακέτο ή πρόταση</option>
+              <option value="Starter Website — 99€">Starter Website — 99€</option>
+              <option value="Business Website — 199€">Business Website — 199€</option>
+              <option value="Premium Redesign — 349€">Premium Redesign — 349€</option>
+              <option value="Δεν είμαι σίγουρος / θέλω πρόταση">Δεν είμαι σίγουρος / θέλω πρόταση</option>
+            </select>
+          </label>
+
           <div class="form-row two-fields">
             <label>Email
               <input type="email" name="email" autocomplete="email" inputmode="email" maxlength="120" required placeholder="email@example.com" />
@@ -444,7 +500,7 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="year">2026</span> Alex Zaxa. Modern websites for local Greek businesses.</p>
+      <p>© <span id="year">2026</span> Alex Zaxa. All rights reserved.</p>
       <div class="footer-links">
         <a href="#top">Πάνω</a>
         <a href="demos/index.html">Preview styles</a>
