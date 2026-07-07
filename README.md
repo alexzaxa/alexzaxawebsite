@@ -253,3 +253,6 @@ After connecting a real domain, update these placeholder values:
 - `sitemap.xml`
 
 No static header can fully stop spam or guarantee email delivery. Test the form after publishing and keep the first FormSubmit confirmation email.
+
+This project is private and for Alex Zaxa’s use only. It is not open-source, not a public template, and not intended for normal use by anyone other than Alex Zaxa, the creator.
+No one may copy, host, publish, resell, redistribute, modify, or use this project or its files without written permission from Alex Zaxa. Unauthorized use is not allowed. If unauthorized use is found, Alex Zaxa reserves the right to seek legal advice and take appropriate legal action.
