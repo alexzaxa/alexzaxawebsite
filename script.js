@@ -75,6 +75,7 @@ document.documentElement.classList.add('js');
       name: 'Starter Website',
       price: 'Τιμή: 99€',
       priceValue: '99€',
+      baseAmount: 99,
       summary: 'Ιδανικό για επιχείρηση που θέλει γρήγορη, καθαρή και επαγγελματική online παρουσία χωρίς περίπλοκες ενότητες.',
       time: 'Παράδοση: 3–7 ημέρες, ανάλογα με το υλικό',
       best: 'Κατάλληλο για απλή παρουσίαση, βασικές πληροφορίες και άμεση επικοινωνία.',
@@ -91,6 +92,7 @@ document.documentElement.classList.add('js');
       name: 'Business Website',
       price: 'Τιμή: 199€',
       priceValue: '199€',
+      baseAmount: 199,
       summary: 'Ιδανικό για καφέ, εστιατόριο, κατάστημα ή υπηρεσία που θέλει πλήρη και επαγγελματική παρουσία.',
       time: 'Παράδοση: 5–10 ημέρες, ανάλογα με το project',
       best: 'Κατάλληλο για επιχειρήσεις που θέλουν ολοκληρωμένη εικόνα και περισσότερες ενότητες.',
@@ -107,6 +109,7 @@ document.documentElement.classList.add('js');
       name: 'Premium Redesign',
       price: 'Τιμή: 349€',
       priceValue: '349€',
+      baseAmount: 349,
       summary: 'Ιδανικό για επιχείρηση που έχει ήδη website ή θέλει πιο premium αποτέλεσμα με καλύτερη αισθητική, UX και εμπιστοσύνη.',
       time: 'Παράδοση: 7–14 ημέρες, ανάλογα με το project',
       best: 'Κατάλληλο για επιχειρήσεις που θέλουν ανασχεδιασμό, πιο δυνατή παρουσία και premium αίσθηση.',
@@ -129,6 +132,7 @@ document.documentElement.classList.add('js');
       name: 'Digital Menu',
       price: 'Τιμή: μετά από πρόταση',
       priceValue: 'Μετά από πρόταση',
+      baseAmount: null,
       summary: 'Ιδανικό για καφέ, εστιατόριο ή take away που θέλει καθαρό menu στο κινητό με κατηγορίες και γρήγορη πλοήγηση.',
       time: 'Παράδοση: ανάλογα με τον αριθμό προϊόντων και το υλικό',
       best: 'Κατάλληλο όταν υπάρχει menu, φωτογραφίες, προϊόντα ή συχνές αλλαγές.',
@@ -145,6 +149,7 @@ document.documentElement.classList.add('js');
       name: 'Landing Page',
       price: 'Τιμή: μετά από πρόταση',
       priceValue: 'Μετά από πρόταση',
+      baseAmount: null,
       summary: 'Ιδανικό για μία συγκεκριμένη υπηρεσία, προσφορά ή καμπάνια που χρειάζεται δυνατή πρώτη εντύπωση και ξεκάθαρο CTA.',
       time: 'Παράδοση: ανάλογα με το περιεχόμενο και τον στόχο της σελίδας',
       best: 'Κατάλληλο για διαφημίσεις, social traffic, προσωπικό brand ή νέα υπηρεσία.',
@@ -161,6 +166,7 @@ document.documentElement.classList.add('js');
       name: 'Θέλω πρόταση',
       price: 'Τιμή: μετά από συζήτηση',
       priceValue: 'Μετά από συζήτηση',
+      baseAmount: null,
       summary: 'Ιδανικό όταν δεν είσαι σίγουρος ποια λύση ταιριάζει καλύτερα στην επιχείρηση και θέλεις καθοδήγηση.',
       time: 'Παράδοση: θα εκτιμηθεί αφού δω τι χρειάζεται το project',
       best: 'Κατάλληλο για επιχειρήσεις που θέλουν απλή, καθαρή πρόταση πριν αποφασίσουν.',
@@ -192,8 +198,24 @@ document.documentElement.classList.add('js');
   const contactSelectedBest = document.querySelector('#contact-selected-best');
   const contactSelectedIncludes = document.querySelector('#contact-selected-includes');
   const contactPackageSummary = document.querySelector('#contact-package-summary');
+  const contactBasePrice = document.querySelector('#contact-base-price');
+  const contactExtrasTotal = document.querySelector('#contact-extras-total');
+  const contactTotalPrice = document.querySelector('#contact-total-price');
+  const contactMonthlyNote = document.querySelector('#contact-monthly-note');
+  const contactSelectedExtras = document.querySelector('#contact-selected-extras');
   const packageDetails = document.querySelector('#package-details');
+  const builderBasePrice = document.querySelector('#builder-base-price');
+  const builderExtrasTotal = document.querySelector('#builder-extras-total');
+  const builderTotalPrice = document.querySelector('#builder-total-price');
+  const builderMonthlyNote = document.querySelector('#builder-monthly-note');
+  const clearExtrasButtons = Array.from(document.querySelectorAll('[data-clear-extras]'));
+  const extraCheckboxes = Array.from(document.querySelectorAll('input[name="extra_option"]'));
+  const selectedExtrasInput = document.querySelector('#selected-extras-input');
+  const selectedExtrasTotalInput = document.querySelector('#selected-extras-total-input');
+  const selectedTotalEstimateInput = document.querySelector('#selected-total-estimate-input');
+  const selectedMonthlyTotalInput = document.querySelector('#selected-monthly-total-input');
   const websiteTypeSelect = form ? form.querySelector('select[name="website_type"]') : null;
+  let currentPackageKey = 'business';
 
   function getPackageKeyFromValue(value) {
     if (!value) return null;
@@ -217,9 +239,97 @@ document.documentElement.classList.add('js');
     });
   }
 
+  function formatEuro(amount) {
+    return `${amount}€`;
+  }
+
+  function getSelectedExtras() {
+    const selected = new Map();
+
+    extraCheckboxes.forEach((checkbox) => {
+      if (!(checkbox instanceof HTMLInputElement) || !checkbox.checked) return;
+      const key = checkbox.value || checkbox.dataset.extraLabel || 'extra';
+      if (selected.has(key)) return;
+      selected.set(key, {
+        label: checkbox.dataset.extraLabel || checkbox.value,
+        price: Number(checkbox.dataset.extraPrice || 0),
+        monthly: Number(checkbox.dataset.extraMonthly || 0)
+      });
+    });
+
+    return Array.from(selected.values());
+  }
+
+  function syncMatchingExtras(changedCheckbox) {
+    if (!(changedCheckbox instanceof HTMLInputElement)) return;
+    const key = changedCheckbox.value;
+    extraCheckboxes.forEach((checkbox) => {
+      if (checkbox instanceof HTMLInputElement && checkbox !== changedCheckbox && checkbox.value === key) {
+        checkbox.checked = changedCheckbox.checked;
+      }
+    });
+  }
+
+  function renderSelectedExtrasList(listElement, extras) {
+    if (!listElement) return;
+    listElement.innerHTML = '';
+    if (!extras.length) {
+      const li = document.createElement('li');
+      li.textContent = 'Δεν έχει επιλεγεί extra.';
+      listElement.appendChild(li);
+      return;
+    }
+    extras.forEach((extra) => {
+      const li = document.createElement('li');
+      const priceText = extra.monthly > 0 ? `+${formatEuro(extra.monthly)}/μήνα` : extra.price > 0 ? `+${formatEuro(extra.price)}` : 'included';
+      li.textContent = `${extra.label} (${priceText})`;
+      listElement.appendChild(li);
+    });
+  }
+
+  function updateTotals() {
+    const data = packageData[currentPackageKey];
+    if (!data) return;
+    const extras = getSelectedExtras();
+    const extrasTotal = extras.reduce((sum, extra) => sum + extra.price, 0);
+    const monthlyTotal = extras.reduce((sum, extra) => sum + extra.monthly, 0);
+    const hasFixedBase = typeof data.baseAmount === 'number';
+    const total = hasFixedBase ? data.baseAmount + extrasTotal : null;
+    const baseText = hasFixedBase ? formatEuro(data.baseAmount) : data.priceValue;
+    const extrasText = formatEuro(extrasTotal);
+    const monthlyText = monthlyTotal > 0 ? `+${formatEuro(monthlyTotal)}/μήνα` : 'Χωρίς μηνιαία extras.';
+    const totalText = hasFixedBase ? formatEuro(total) : (extrasTotal > 0 ? `Μετά από πρόταση + ${extrasText} extras` : data.priceValue);
+
+    if (builderBasePrice) builderBasePrice.textContent = baseText;
+    if (builderExtrasTotal) builderExtrasTotal.textContent = extrasText;
+    if (builderTotalPrice) builderTotalPrice.textContent = totalText;
+    if (builderMonthlyNote) builderMonthlyNote.textContent = monthlyText;
+
+    if (contactBasePrice) contactBasePrice.textContent = baseText;
+    if (contactExtrasTotal) contactExtrasTotal.textContent = extrasText;
+    if (contactTotalPrice) contactTotalPrice.textContent = totalText;
+    if (contactMonthlyNote) contactMonthlyNote.textContent = monthlyText;
+    if (contactSelectedPrice) contactSelectedPrice.textContent = totalText;
+    renderSelectedExtrasList(contactSelectedExtras, extras);
+
+    const extrasDescription = extras.length
+      ? extras.map((extra) => {
+          const priceText = extra.monthly > 0 ? `+${formatEuro(extra.monthly)}/μήνα` : extra.price > 0 ? `+${formatEuro(extra.price)}` : 'included';
+          return `${extra.label} (${priceText})`;
+        }).join(', ')
+      : 'Κανένα extra';
+
+    if (selectedPriceInput instanceof HTMLInputElement) selectedPriceInput.value = baseText;
+    if (selectedExtrasInput instanceof HTMLInputElement) selectedExtrasInput.value = extrasDescription;
+    if (selectedExtrasTotalInput instanceof HTMLInputElement) selectedExtrasTotalInput.value = extrasText;
+    if (selectedTotalEstimateInput instanceof HTMLInputElement) selectedTotalEstimateInput.value = totalText;
+    if (selectedMonthlyTotalInput instanceof HTMLInputElement) selectedMonthlyTotalInput.value = monthlyTotal > 0 ? `${formatEuro(monthlyTotal)}/μήνα` : '0€/μήνα';
+  }
+
   function setSelectedPackage(key, options = {}) {
     const data = packageData[key];
     if (!data) return;
+    currentPackageKey = key;
     const shouldSyncSelect = options.syncSelect !== false;
 
     packageCards.forEach((card) => {
@@ -243,11 +353,11 @@ document.documentElement.classList.add('js');
     renderIncludes(contactSelectedIncludes, data.includes);
 
     if (selectedInput instanceof HTMLInputElement) selectedInput.value = data.label;
-    if (selectedPriceInput instanceof HTMLInputElement) selectedPriceInput.value = data.priceValue;
     if (selectedDeliveryInput instanceof HTMLInputElement) selectedDeliveryInput.value = data.time;
     if (selectedSummaryInput instanceof HTMLInputElement) selectedSummaryInput.value = data.summary;
     if (selectedIncludesInput instanceof HTMLInputElement) selectedIncludesInput.value = data.includes.join(', ');
     if (shouldSyncSelect && websiteTypeSelect instanceof HTMLSelectElement) websiteTypeSelect.value = data.label;
+    updateTotals();
 
     [packageDetails, contactPackageSummary].forEach((panel) => {
       if (!panel) return;
@@ -290,7 +400,35 @@ document.documentElement.classList.add('js');
     });
   }
 
+  extraCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+      syncMatchingExtras(checkbox);
+      updateTotals();
+      [packageDetails, contactPackageSummary].forEach((panel) => {
+        if (!panel) return;
+        panel.classList.remove('is-updating');
+        window.requestAnimationFrame(() => panel.classList.add('is-updating'));
+      });
+    });
+  });
+
+  clearExtrasButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
+    button.addEventListener('click', () => {
+      extraCheckboxes.forEach((checkbox) => {
+        if (checkbox instanceof HTMLInputElement) checkbox.checked = false;
+      });
+      updateTotals();
+      [packageDetails, contactPackageSummary].forEach((panel) => {
+        if (!panel) return;
+        panel.classList.remove('is-updating');
+        window.requestAnimationFrame(() => panel.classList.add('is-updating'));
+      });
+    });
+  });
+
   if (packageCards.length) setSelectedPackage('business');
+  else updateTotals();
 
   if (form instanceof HTMLFormElement) {
     const submitButton = form.querySelector('.form-submit');

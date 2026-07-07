@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#07101d" />
+  <title>Client Account | Alex Zaxa</title>
+  <meta name="description" content="Protected client account preview for Alex Zaxa website projects." />
+  <link rel="stylesheet" href="../styles.css?v=auth-mail-fix-20260707" />
+  <link rel="stylesheet" href="./auth.css?v=auth-mail-fix-20260707" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="./config.js" defer></script>
+  <script src="./auth.js?v=auth-mail-fix-20260707" defer></script>
+</head>
+<body class="auth-page" data-auth-page="account">
+  <a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Κύρια πλοήγηση">
+      <a href="../index.html" class="brand" aria-label="Alex Zaxa αρχική σελίδα"><span class="brand-mark" aria-hidden="true">AZ</span><span class="brand-text">Alex Zaxa</span></a>
+      <div class="nav-menu static"><a href="../index.html#work">Παραδείγματα</a><a href="../demos/index.html">Preview styles</a><a href="../index.html#contact" class="nav-cta">Επικοινωνία</a></div>
+    </nav>
+  </header>
+  <main id="main" class="auth-shell">
+    <div class="container">
+      <section class="auth-card" aria-labelledby="account-title">
+        <div class="auth-side">
+          <p class="eyebrow">Client account</p>
+          <h1 id="account-title">Portal πελάτη</h1>
+          <p>Αυτό είναι το βασικό protected account page. Μπορεί αργότερα να επεκταθεί με project status, links, αρχεία, invoices ή previews.</p>
+        </div>
+        <div class="auth-form-wrap account-panel">
+          <div class="account-meta">
+            <p>Συνδεδεμένος χρήστης:</p>
+            <strong data-account-email>Έλεγχος σύνδεσης...</strong>
+          </div>
+          <p class="auth-status" data-auth-status aria-live="polite">Γίνεται έλεγχος session...</p>
+          <div class="auth-actions">
+            <a class="btn btn-secondary" href="../index.html#contact">Νέο αίτημα website</a>
+            <button class="btn btn-primary" type="button" data-sign-out>Αποσύνδεση</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -25,7 +25,7 @@
 
   <title>Alex Zaxa | Κατασκευή Ιστοσελίδων για Τοπικές Επιχειρήσεις</title>
   <link rel="preconnect" href="https://formsubmit.co" />
-  <link rel="stylesheet" href="./styles.css?v=github-layout-fix-20260707" />
+  <link rel="stylesheet" href="./styles.css?v=auth-mail-fix-20260707" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -40,7 +40,7 @@
     "serviceType": ["Website creation", "Website redesign", "Digital menu", "Landing page", "Business website"]
   }
   </script>
-  <script src="./script.js?v=github-layout-fix-20260707" defer></script>
+  <script src="./script.js?v=auth-mail-fix-20260707" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
@@ -62,6 +62,7 @@
         <a href="#work">Παραδείγματα</a>
         <a href="#packages">Πακέτα</a>
         <a href="#faq">FAQ</a>
+        <a href="auth/login.html">Client login</a>
         <a href="#contact" class="nav-cta">Ζήτησε ιστοσελίδα</a>
       </div>
     </nav>
@@ -335,26 +336,72 @@
             </ul>
           </div>
 
-          <div class="package-extras-card">
-            <h4>Προαιρετικά extras</h4>
-            <p>Τα παρακάτω είναι ξεχωριστά από τη βασική τιμή και ισχύουν μόνο αν τα χρειάζεται το project.</p>
-            <ul>
-              <li>Extra page: +30€ έως +60€</li>
-              <li>Extra language: +50€ έως +100€</li>
-              <li>Advanced animations: +40€ έως +100€</li>
-              <li>Digital menu setup: +50€ έως +150€</li>
-              <li>Copywriting help: +40€ έως +120€</li>
-              <li>Image/gallery organization: +30€ έως +80€</li>
-              <li>Monthly updates/support: από 20€/μήνα</li>
-              <li>Domain setup guidance: included as guidance, domain cost paid separately</li>
-            </ul>
+          <div class="package-extras-card extras-builder" id="extras-builder">
+            <div class="extras-head">
+              <div>
+                <h4>Διάλεξε extras</h4>
+                <p id="extras-help">Επίλεξε μόνο όσα χρειάζεται η επιχείρηση. Το σύνολο ενημερώνεται αυτόματα.</p>
+              </div>
+              <button type="button" class="extras-clear" id="clear-extras" data-clear-extras>Καθαρισμός</button>
+            </div>
+
+            <fieldset class="extras-list" aria-describedby="extras-help">
+              <legend class="sr-only">Προαιρετικά extras για την ιστοσελίδα</legend>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Extra page" data-extra-label="Extra page" data-extra-price="40" />
+                <span><strong>Extra page</strong><small>Για επιπλέον σελίδα όπως υπηρεσίες, menu ή gallery.</small></span>
+                <b>+40€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Extra language" data-extra-label="Extra language" data-extra-price="70" />
+                <span><strong>Extra language</strong><small>Δεύτερη γλώσσα, π.χ. Ελληνικά / English.</small></span>
+                <b>+70€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Advanced animations" data-extra-label="Advanced animations" data-extra-price="60" />
+                <span><strong>Advanced animations</strong><small>Πιο έντονα premium animations και micro-interactions.</small></span>
+                <b>+60€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Digital menu setup" data-extra-label="Digital menu setup" data-extra-price="90" />
+                <span><strong>Digital menu setup</strong><small>Κατηγορίες, προϊόντα και mobile menu εμπειρία.</small></span>
+                <b>+90€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Copywriting help" data-extra-label="Copywriting help" data-extra-price="60" />
+                <span><strong>Copywriting help</strong><small>Βοήθεια με πιο επαγγελματικά κείμενα.</small></span>
+                <b>+60€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Image/gallery organization" data-extra-label="Image/gallery organization" data-extra-price="50" />
+                <span><strong>Image/gallery organization</strong><small>Οργάνωση φωτογραφιών σε πιο καθαρή παρουσίαση.</small></span>
+                <b>+50€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Monthly updates/support" data-extra-label="Monthly updates/support" data-extra-price="0" data-extra-monthly="20" />
+                <span><strong>Monthly updates/support</strong><small>Μικρές αλλαγές και υποστήριξη μετά την παράδοση.</small></span>
+                <b>+20€/μήνα</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Domain setup guidance" data-extra-label="Domain setup guidance" data-extra-price="0" />
+                <span><strong>Domain setup guidance</strong><small>Καθοδήγηση για domain. Το κόστος domain πληρώνεται ξεχωριστά.</small></span>
+                <b>Included</b>
+              </label>
+            </fieldset>
+
+            <div class="price-builder" aria-live="polite">
+              <div><span>Βασική τιμή</span><strong id="builder-base-price">199€</strong></div>
+              <div><span>Extras</span><strong id="builder-extras-total">0€</strong></div>
+              <div class="builder-total"><span>Εκτιμώμενο σύνολο</span><strong id="builder-total-price">199€</strong></div>
+              <p id="builder-monthly-note" class="builder-monthly-note">Χωρίς μηνιαία extras.</p>
+            </div>
           </div>
         </div>
 
         <div class="package-summary reveal" id="package-summary-text">
           <p class="eyebrow">Interactive επιλογή</p>
           <h3>Επίλεξε πακέτο για να δεις καθαρά τι περιλαμβάνει.</h3>
-          <p>Οι βασικές τιμές είναι Starter 99€, Business 199€ και Premium 349€. Με την επιλογή πακέτου ενημερώνεται αυτόματα και η φόρμα επικοινωνίας.</p>
+          <p>Οι βασικές τιμές είναι Starter 99€, Business 199€ και Premium 349€. Με την επιλογή πακέτου και extras ενημερώνεται αυτόματα και η φόρμα επικοινωνίας με εκτιμώμενο σύνολο.</p>
           <p>Μπορώ να σε βοηθήσω να το ανεβάσεις σε GitHub Pages, Cloudflare Pages ή Netlify και να συνδέσεις domain όταν είσαι έτοιμος.</p>
         </div>
       </div>
@@ -441,6 +488,10 @@
           <input type="hidden" name="selected_package_delivery" id="selected-package-delivery-input" value="Παράδοση: 5–10 ημέρες, ανάλογα με το project" />
           <input type="hidden" name="selected_package_summary" id="selected-package-summary-input" value="Ιδανικό για καφέ, εστιατόριο, κατάστημα ή υπηρεσία που θέλει πλήρη και επαγγελματική παρουσία." />
           <input type="hidden" name="selected_package_includes" id="selected-package-includes-input" value="Πολλαπλές ενότητες, Gallery / προϊόντα / υπηρεσίες, Contact form, Google Maps & social links, Δομή για Instagram / Google Maps traffic" />
+          <input type="hidden" name="selected_extras" id="selected-extras-input" value="Κανένα extra" />
+          <input type="hidden" name="selected_extras_total" id="selected-extras-total-input" value="0€" />
+          <input type="hidden" name="selected_total_estimate" id="selected-total-estimate-input" value="199€" />
+          <input type="hidden" name="selected_monthly_total" id="selected-monthly-total-input" value="0€/μήνα" />
 
           <div class="form-row two-fields">
             <label>Όνομα
@@ -481,7 +532,62 @@
             <textarea name="message" rows="6" maxlength="1200" required placeholder="Πες μου τι χρειάζεσαι, αν έχεις ήδη website, social links, φωτογραφίες ή μενού."></textarea>
           </label>
 
-          <section class="contact-package-summary" id="contact-package-summary" aria-live="polite" aria-label="Σύνοψη επιλεγμένου πακέτου που θα σταλεί με το αίτημα">
+          <section class="checkout-extras-card extras-builder" id="checkout-extras" aria-labelledby="checkout-extras-title">
+            <div class="extras-head">
+              <div>
+                <p class="eyebrow">Προαιρετικά extras</p>
+                <h3 id="checkout-extras-title">Διάλεξε τι χρειάζεσαι πριν στείλεις το αίτημα</h3>
+                <p id="checkout-extras-help">Επίλεξε extras μόνο αν τα θέλει η επιχείρηση. Το τελικό σύνολο ενημερώνεται αυτόματα στη σύνοψη από κάτω.</p>
+              </div>
+              <button type="button" class="extras-clear" data-clear-extras>Καθαρισμός extras</button>
+            </div>
+
+            <fieldset class="extras-list checkout-extras-list" aria-describedby="checkout-extras-help">
+              <legend class="sr-only">Προαιρετικά extras για το αίτημα ιστοσελίδας</legend>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Extra page" data-extra-label="Extra page" data-extra-price="40" />
+                <span><strong>Extra page</strong><small>Για επιπλέον σελίδα όπως υπηρεσίες, menu ή gallery.</small></span>
+                <b>+40€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Extra language" data-extra-label="Extra language" data-extra-price="70" />
+                <span><strong>Extra language</strong><small>Δεύτερη γλώσσα, π.χ. Ελληνικά / English.</small></span>
+                <b>+70€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Advanced animations" data-extra-label="Advanced animations" data-extra-price="60" />
+                <span><strong>Advanced animations</strong><small>Πιο premium κίνηση, hover effects και micro-interactions.</small></span>
+                <b>+60€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Digital menu setup" data-extra-label="Digital menu setup" data-extra-price="90" />
+                <span><strong>Digital menu setup</strong><small>Κατηγορίες, προϊόντα και καθαρή mobile menu εμπειρία.</small></span>
+                <b>+90€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Copywriting help" data-extra-label="Copywriting help" data-extra-price="60" />
+                <span><strong>Copywriting help</strong><small>Βοήθεια με κείμενα που ακούγονται επαγγελματικά.</small></span>
+                <b>+60€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Image/gallery organization" data-extra-label="Image/gallery organization" data-extra-price="50" />
+                <span><strong>Image/gallery organization</strong><small>Οργάνωση φωτογραφιών σε gallery ή sections.</small></span>
+                <b>+50€</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Monthly updates/support" data-extra-label="Monthly updates/support" data-extra-price="0" data-extra-monthly="20" />
+                <span><strong>Monthly updates/support</strong><small>Μικρές αλλαγές και υποστήριξη μετά την παράδοση.</small></span>
+                <b>+20€/μήνα</b>
+              </label>
+              <label class="extra-option">
+                <input type="checkbox" name="extra_option" value="Domain setup guidance" data-extra-label="Domain setup guidance" data-extra-price="0" />
+                <span><strong>Domain setup guidance</strong><small>Καθοδήγηση για domain. Το domain πληρώνεται ξεχωριστά.</small></span>
+                <b>Included</b>
+              </label>
+            </fieldset>
+          </section>
+
+          <section class="contact-package-summary" id="contact-package-summary" aria-live="polite" aria-label="Σύνοψη επιλεγμένου πακέτου και extras που θα σταλούν με το αίτημα">
             <div class="contact-package-topline">
               <span class="eyebrow">Επιλογή αιτήματος</span>
               <span class="contact-package-pill" id="contact-selected-price">199€</span>
@@ -491,6 +597,18 @@
             <div class="contact-package-meta">
               <span id="contact-selected-time">Παράδοση: 5–10 ημέρες, ανάλογα με το project</span>
               <span id="contact-selected-best">Κατάλληλο για επιχειρήσεις που θέλουν ολοκληρωμένη εικόνα και περισσότερες ενότητες.</span>
+            </div>
+            <div class="contact-price-breakdown" aria-live="polite">
+              <div><span>Βασική τιμή</span><strong id="contact-base-price">199€</strong></div>
+              <div><span>Extras</span><strong id="contact-extras-total">0€</strong></div>
+              <div class="contact-total"><span>Τελικό σύνολο</span><strong id="contact-total-price">199€</strong></div>
+              <p id="contact-monthly-note">Χωρίς μηνιαία extras.</p>
+            </div>
+            <div class="contact-selected-extras-box">
+              <strong>Extras που επέλεξες:</strong>
+              <ul id="contact-selected-extras">
+                <li>Δεν έχει επιλεγεί extra.</li>
+              </ul>
             </div>
             <div class="contact-package-includes">
               <strong>Θα σταλεί μαζί με τη φόρμα:</strong>
@@ -502,7 +620,7 @@
                 <li>Δομή για Instagram / Google Maps traffic</li>
               </ul>
             </div>
-            <p class="contact-package-note">Αυτή η σύνοψη αλλάζει αυτόματα ανάλογα με το πακέτο ή τον τύπο website που επιλέγεις.</p>
+            <p class="contact-package-note">Αυτή η σύνοψη αλλάζει αυτόματα ανάλογα με το πακέτο, τον τύπο website και τα extras που επιλέγεις πιο πάνω.</p>
           </section>
 
           <label class="consent-check">
@@ -525,6 +643,8 @@
         <a href="#top">Πάνω</a>
         <a href="demos/index.html">Preview styles</a>
         <a href="privacy.html">Privacy</a>
+        <a href="auth/login.html">Client login</a>
+        <a href="auth/signup.html">Sign up</a>
         <a href="mailto:alexzaxa70@gmail.com">Email</a>
         <a href="https://www.instagram.com/___zaxoss/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @___zaxoss σε νέα καρτέλα">Instagram</a>
       </div>

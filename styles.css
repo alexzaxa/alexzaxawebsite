@@ -686,3 +686,241 @@ input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown) 
 @media (prefers-reduced-motion: reduce) {
   .contact-package-summary.is-updating { animation: none; }
 }
+
+/* Interactive extras / total price builder */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.extras-builder { display: grid; gap: 1rem; }
+.extras-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.extras-head h4 { margin-bottom: .35rem; }
+.extras-clear {
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: var(--muted-strong);
+  border-radius: 999px;
+  padding: .58rem .8rem;
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .2s var(--ease), border-color .2s ease, color .2s ease, background .2s ease;
+}
+.extras-clear:hover,
+.extras-clear:focus-visible {
+  color: var(--text);
+  border-color: rgba(85,216,255,.5);
+  background: rgba(85,216,255,.1);
+  transform: translateY(-1px);
+}
+.extras-list {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: .62rem;
+}
+.extra-option {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: flex-start;
+  gap: .7rem;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: .72rem .78rem;
+  background: rgba(255,255,255,.04);
+  cursor: pointer;
+  transition: transform .2s var(--ease), border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.extra-option:hover,
+.extra-option:has(input:focus-visible) {
+  transform: translateY(-1px);
+  border-color: rgba(85,216,255,.45);
+  background: rgba(85,216,255,.075);
+  box-shadow: 0 14px 35px rgba(0,0,0,.18);
+}
+.extra-option input {
+  width: 20px;
+  height: 20px;
+  margin-top: .1rem;
+  accent-color: var(--primary-2);
+}
+.extra-option span { display: grid; gap: .15rem; }
+.extra-option strong { color: var(--text); font-weight: 950; }
+.extra-option small { color: var(--muted); line-height: 1.45; }
+.extra-option b {
+  white-space: nowrap;
+  color: var(--warning);
+  font-size: .9rem;
+}
+.extra-option:has(input:checked) {
+  border-color: rgba(55,225,172,.58);
+  background: linear-gradient(135deg, rgba(55,225,172,.12), rgba(85,216,255,.07));
+}
+.checkout-extras-card {
+  border: 1px solid rgba(85,216,255,.24);
+  border-radius: 24px;
+  background: radial-gradient(circle at 100% 0%, rgba(85,216,255,.14), transparent 34%), linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+  padding: clamp(1rem, 2.2vw, 1.35rem);
+  box-shadow: 0 20px 70px rgba(0,0,0,.24);
+}
+.checkout-extras-card h3 {
+  margin: .25rem 0 .35rem;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+}
+.checkout-extras-card p { color: var(--muted-strong); }
+.checkout-extras-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.checkout-extras-card .extra-option {
+  background: rgba(255,255,255,.055);
+}
+.price-builder,
+.contact-price-breakdown,
+.contact-selected-extras-box {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  background: rgba(0,0,0,.18);
+  padding: .9rem;
+}
+.price-builder { display: grid; gap: .45rem; }
+.price-builder div,
+.contact-price-breakdown div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted-strong);
+}
+.price-builder strong,
+.contact-price-breakdown strong { color: var(--text); }
+.builder-total,
+.contact-total {
+  margin-top: .35rem;
+  padding-top: .65rem;
+  border-top: 1px solid var(--line);
+  font-size: 1.08rem;
+}
+.builder-total strong,
+.contact-total strong { color: var(--primary); }
+#contact-selected-price { color: #06101b; }
+.builder-monthly-note,
+#contact-monthly-note {
+  margin: .4rem 0 0;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.contact-price-breakdown {
+  margin-top: 1rem;
+  display: grid;
+  gap: .45rem;
+}
+.contact-selected-extras-box {
+  margin-top: .8rem;
+}
+.contact-selected-extras-box strong { color: var(--text); }
+.contact-selected-extras-box ul {
+  list-style: none;
+  padding: 0;
+  margin: .55rem 0 0;
+  display: grid;
+  gap: .38rem;
+}
+.contact-selected-extras-box li {
+  color: var(--muted-strong);
+  display: flex;
+  gap: .45rem;
+}
+.contact-selected-extras-box li::before {
+  content: "+";
+  color: var(--warning);
+  font-weight: 950;
+}
+@media (max-width: 680px) {
+  .checkout-extras-list { grid-template-columns: 1fr; }
+  .extras-head { flex-direction: column; }
+  .extras-clear { width: 100%; }
+  .extra-option { grid-template-columns: auto 1fr; }
+  .extra-option b { grid-column: 2; }
+  .price-builder div,
+  .contact-price-breakdown div { align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .extras-clear,
+  .extra-option { transition: none; }
+  .extras-clear:hover,
+  .extra-option:hover,
+  .extra-option:has(input:focus-visible) { transform: none; }
+}
+
+
+/* Fix cramped extra cards on checkout and package calculator */
+.extras-list,
+.checkout-extras-list {
+  width: 100%;
+  min-width: 0;
+}
+.checkout-extras-list {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+.extra-option {
+  display: flex;
+  align-items: flex-start;
+  gap: .72rem;
+  min-width: 0;
+  overflow: hidden;
+}
+.extra-option input {
+  flex: 0 0 20px;
+}
+.extra-option span {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.extra-option b {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: .08rem .45rem;
+  border-radius: 999px;
+  background: rgba(255, 209, 102, .1);
+  border: 1px solid rgba(255, 209, 102, .22);
+  line-height: 1.45;
+  max-width: 46%;
+  text-align: right;
+}
+.extra-option:has(input:checked) b {
+  background: rgba(55, 225, 172, .11);
+  border-color: rgba(55, 225, 172, .26);
+}
+.nav-menu a[href*="auth/"] {
+  color: var(--muted-strong);
+}
+@media (max-width: 520px) {
+  .extra-option {
+    flex-wrap: wrap;
+  }
+  .extra-option b {
+    margin-left: 2rem;
+    max-width: calc(100% - 2rem);
+    text-align: left;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .extra-option,
+  .extras-clear {
+    transition: none;
+  }
+}
