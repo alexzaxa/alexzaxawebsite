@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-domain.example/sitemap.xml
-Disallow: /auth/account.html
-Disallow: /auth/config.js
+Sitemap: https://YOUR-DOMAIN-HERE/sitemap.xml

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://your-domain.example/</loc><priority>1.0</priority></url>
-  <url><loc>https://your-domain.example/privacy.html</loc><priority>0.3</priority></url>
-  <url><loc>https://your-domain.example/demos/index.html</loc><priority>0.8</priority></url>
-  <url><loc>https://your-domain.example/demos/cafe/index.html</loc><priority>0.7</priority></url>
-  <url><loc>https://your-domain.example/demos/restaurant/index.html</loc><priority>0.7</priority></url>
-  <url><loc>https://your-domain.example/demos/digital-menu/index.html</loc><priority>0.7</priority></url>
-  <url><loc>https://your-domain.example/demos/shop/index.html</loc><priority>0.7</priority></url>
-  <url><loc>https://your-domain.example/demos/service/index.html</loc><priority>0.7</priority></url>
-  <url><loc>https://your-domain.example/demos/personal/index.html</loc><priority>0.7</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/</loc><priority>1.0</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/privacy.html</loc><priority>0.3</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/terms.html</loc><priority>0.3</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/demos/index.html</loc><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/demos/cafe/index.html</loc><priority>0.7</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/demos/restaurant/index.html</loc><priority>0.7</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/demos/digital-menu/index.html</loc><priority>0.7</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/demos/shop/index.html</loc><priority>0.7</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/demos/service/index.html</loc><priority>0.7</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/demos/personal/index.html</loc><priority>0.7</priority></url>
 </urlset>

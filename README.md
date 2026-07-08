@@ -4,6 +4,21 @@ Static personal business website for **Alex Zaxa**, focused on creating and rede
 
 The project is Greek-first, mobile-first, fast, animated, static-hosting friendly, and ready to upload without a build step.
 
+
+## New business/conversion features
+
+This version includes extra conversion tools for real website sales:
+
+- **Start a project quiz** that suggests Starter, Business, Premium, Digital Menu, Landing Page, or “not sure” based on the visitor's business type, existing website, goal, budget, and available material
+- **Before / After redesign section** explaining the value of redesigning an old or weak online presence
+- **Who this is for** section for cafés, restaurants, shops, barbers, service businesses, freelancers, and personal brands
+- **What you need to send me** checklist for business name, logo, photos, menu/services, social links, and Google Maps link
+- **Delivery timeline** section with usual time ranges for Starter, Business, and Premium/Redesign projects
+- **Monthly support** option as an extra for small changes after publishing
+- **Terms page** (`terms.html`) explaining deposit, payment flow, revisions, domain/hosting, and delivery basics
+- **Quick contact buttons** for email, Instagram, and website request
+- **No fake testimonials**; portfolio proof stays honest until real client projects can be added with permission
+
 ## Project structure
 
 ```text
@@ -13,6 +28,7 @@ script.js
 thanks.html
 404.html
 privacy.html
+terms.html
 README.md
 .htaccess
 _headers
@@ -20,6 +36,7 @@ robots.txt
 sitemap.xml
 open-local.bat
 assets/og-preview.svg
+MAIL_SETUP.md
 demos/index.html
 demos/demo-styles.css
 demos/demo-script.js
@@ -106,8 +123,41 @@ The form includes:
 - Double-submit protection
 - Dynamic redirect to `thanks.html`
 - Privacy note linking to `privacy.html`
+- Selected package, selected extras, extras total, final estimated total, monthly support total, preferred payment method, and quiz answers/suggested package are sent with the request
+- Extras can be selected directly inside the contact/checkout form, not only from the package preview section
+- Payment is not taken on the website. The visitor chooses PayPal, bank transfer, or “we will discuss it”, and you send payment instructions manually after confirming the final price
 
 Local testing shows the form design and validation. The real email flow should be tested after publishing to GitHub Pages, Cloudflare Pages, or Netlify.
+
+
+## Payment setup: PayPal or bank transfer
+
+This site does **not** collect money automatically. It collects a website request and asks the visitor which payment method they prefer. This is safer because the price calculator is frontend-only and should not be treated as a real checkout.
+
+Recommended workflow:
+
+1. Visitor chooses package + extras.
+2. Visitor chooses preferred payment method: PayPal, bank transfer, or discuss first.
+3. Visitor submits the form.
+4. You receive the request by email.
+5. You confirm the final price manually.
+6. You send either a PayPal payment link or your bank transfer details.
+7. Start the project after the agreed deposit/payment.
+
+Suggested payment rule to use with clients:
+
+```text
+50% προκαταβολή για να ξεκινήσει το project.
+50% όταν η ιστοσελίδα είναι έτοιμη για παράδοση.
+```
+
+Do not put your IBAN or PayPal link publicly on the website unless you are sure you want everyone to see it. The current version only asks for the visitor's preference and sends it to you through the form.
+
+## Terms page
+
+`terms.html` is a simple Greek terms/cooperation page. It explains that payment is manual, a deposit may be requested, changes/revisions should be agreed, domain/hosting can be separate, and final delivery happens after payment completion.
+
+Keep it simple and update it before using the website with real clients. For repeated paid work, ask an accountant in Greece about receipts/invoices and VAT/παραστατικό.
 
 ## Change contact details
 
@@ -123,10 +173,11 @@ They appear in `index.html`, `privacy.html`, and this README.
 
 ## Change domain / SEO placeholders
 
-Before publishing with a real domain, update:
+Before publishing with a real domain, search for `https://YOUR-DOMAIN-HERE/` and replace it with your final website URL. Update:
 
-- `https://your-domain.example/` in `index.html`
-- `https://your-domain.example/privacy.html` in `privacy.html`
+- `https://YOUR-DOMAIN-HERE/` in `index.html`
+- `https://YOUR-DOMAIN-HERE/privacy.html` in `privacy.html`
+- `https://YOUR-DOMAIN-HERE/terms.html` in `terms.html`
 - URLs in `sitemap.xml`
 - Sitemap URL in `robots.txt`
 - `url` in the JSON-LD schema inside `index.html`
@@ -216,10 +267,11 @@ This version includes a GitHub Pages visual fix for cases where the page looks c
 
 What was changed:
 
-- CSS and JavaScript links now use relative paths with a cache-busting version query, for example `./styles.css?v=github-layout-fix-20260707`.
+- CSS and JavaScript links now use relative paths with a cache-busting version query, for example `./styles.css?v=growth-tools-20260708`.
 - A `.nojekyll` file is included so GitHub Pages serves the project as a plain static site.
 - Preview/demo links point directly to `index.html` files instead of folders.
 - The pricing/package section has a visible HTML fallback, so it still looks correct even if JavaScript loads late or fails.
+- The package section and the contact/checkout form include an interactive extras picker. Visitors can choose add-ons themselves before submitting, and the estimated total updates automatically in the request summary and hidden FormSubmit fields.
 
 If GitHub Pages still shows the old broken layout:
 
@@ -232,3 +284,54 @@ If GitHub Pages still shows the old broken layout:
    - `demos/demo-styles.css`
    - `demos/demo-script.js`
 5. If you changed the repository name or use a custom domain later, update the canonical URL, sitemap URL, and Open Graph URL placeholders.
+
+
+
+## Professional email / mail setup
+
+See `MAIL_SETUP.md` for the recommended email setup.
+
+Quick recommendation:
+
+- For receiving only: use Cloudflare Email Routing and forward `hello@yourdomain.gr` to Gmail.
+- For sending and receiving from the custom domain: use Zoho Mail free/low-cost plan.
+- Do not self-host mail at the start because deliverability, SPF, DKIM, DMARC, PTR/reverse DNS and spam reputation are hard to maintain.
+
+## Latest fixes
+
+- Fixed cramped extras cards so the checkbox, text and price badge do not overlap.
+- Cleaned security headers so they only allow the current static site, Instagram links, and FormSubmit.
+
+
+## Audit improvement pass
+
+This version applies the latest audit recommendations:
+
+- Added a visible `Σχετικά` navigation link to the About section.
+- Added clearer pricing notes and a careful VAT / invoice clarification without legal/tax promises.
+- Added more FAQ answers about payment, revisions, response time, domain/hosting, Instagram and Google Maps.
+- Added an honest trust section without fake testimonials or fake reviews.
+- Added a 24-hour response expectation near the contact form.
+- Replaced `your-domain.example` with the clearer placeholder `https://YOUR-DOMAIN-HERE/`.
+- Kept the project static-only with no client account system.
+- Added PayPal / bank transfer payment preference to the request form without turning the website into a real checkout.
+
+Before launch, replace `https://YOUR-DOMAIN-HERE/` in `index.html`, `privacy.html`, `terms.html`, `robots.txt`, and `sitemap.xml` with the final domain.
+
+## Growth tools update
+
+This version adds the requested sales features:
+
+- Start-project quiz with hidden FormSubmit fields
+- Before/after redesign explanation
+- Who-this-is-for audience section
+- Materials checklist
+- Delivery timeline
+- Monthly support positioning
+- Honest portfolio proof section
+- Quick contact buttons
+- Not-sure package option
+- Terms page with basic cooperation/payment rules
+
+The website still stays static-only and no payment is taken automatically.
+

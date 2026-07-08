@@ -215,6 +215,20 @@ document.documentElement.classList.add('js');
   const selectedTotalEstimateInput = document.querySelector('#selected-total-estimate-input');
   const selectedMonthlyTotalInput = document.querySelector('#selected-monthly-total-input');
   const websiteTypeSelect = form ? form.querySelector('select[name="website_type"]') : null;
+  const paymentRadios = form ? Array.from(form.querySelectorAll('input[name="preferred_payment_method"]')) : [];
+  const contactPaymentMethod = document.querySelector('#contact-payment-method');
+  const quizInputs = Array.from(document.querySelectorAll('[data-project-quiz] input[type="radio"]'));
+  const quizResultTitle = document.querySelector('#quiz-result-title');
+  const quizResultText = document.querySelector('#quiz-result-text');
+  const quizResultTags = document.querySelector('#quiz-result-tags');
+  const applyQuizButton = document.querySelector('[data-apply-quiz]');
+  const quizBusinessInput = document.querySelector('#quiz-business-type-input');
+  const quizHasWebsiteInput = document.querySelector('#quiz-has-website-input');
+  const quizGoalInput = document.querySelector('#quiz-goal-input');
+  const quizMaterialsInput = document.querySelector('#quiz-materials-input');
+  const quizBudgetInput = document.querySelector('#quiz-budget-input');
+  const quizSuggestedPackageInput = document.querySelector('#quiz-suggested-package-input');
+  let currentQuizSuggestion = 'business';
   let currentPackageKey = 'business';
 
   function getPackageKeyFromValue(value) {
@@ -258,6 +272,12 @@ document.documentElement.classList.add('js');
     });
 
     return Array.from(selected.values());
+  }
+
+  function updatePaymentPreference() {
+    if (!contactPaymentMethod) return;
+    const selectedPayment = paymentRadios.find((radio) => radio instanceof HTMLInputElement && radio.checked);
+    contactPaymentMethod.textContent = selectedPayment ? selectedPayment.value : 'Θα το συζητήσουμε';
   }
 
   function syncMatchingExtras(changedCheckbox) {
@@ -400,6 +420,120 @@ document.documentElement.classList.add('js');
     });
   }
 
+
+  function getQuizValue(name) {
+    const selected = document.querySelector(`[data-project-quiz] input[name="${name}"]:checked`);
+    return selected instanceof HTMLInputElement ? selected.value : '';
+  }
+
+  function writeHidden(input, value) {
+    if (input instanceof HTMLInputElement) input.value = value || 'Δεν συμπληρώθηκε';
+  }
+
+  function renderQuizTags(tags) {
+    if (!quizResultTags) return;
+    quizResultTags.innerHTML = '';
+    tags.forEach((tag) => {
+      const span = document.createElement('span');
+      span.textContent = tag;
+      quizResultTags.appendChild(span);
+    });
+  }
+
+  function updateQuizSuggestion() {
+    if (!quizInputs.length) return;
+    const business = getQuizValue('quiz_business_type');
+    const hasWebsite = getQuizValue('quiz_has_website');
+    const goal = getQuizValue('quiz_goal');
+    const materials = getQuizValue('quiz_materials');
+    const budget = getQuizValue('quiz_budget');
+    const hasAnyAnswer = Boolean(business || hasWebsite || goal || materials || budget);
+    if (!hasAnyAnswer) {
+      currentQuizSuggestion = 'business';
+      if (quizResultTitle) quizResultTitle.textContent = 'Ξεκίνα επιλέγοντας απαντήσεις';
+      if (quizResultText) quizResultText.textContent = 'Θα εμφανιστεί μια προτεινόμενη επιλογή και μπορείς να τη στείλεις μαζί με το αίτημα.';
+      renderQuizTags(['Mobile-first', 'Στατική σελίδα', 'Χωρίς πληρωμή τώρα']);
+      writeHidden(quizBusinessInput, 'Δεν συμπληρώθηκε');
+      writeHidden(quizHasWebsiteInput, 'Δεν συμπληρώθηκε');
+      writeHidden(quizGoalInput, 'Δεν συμπληρώθηκε');
+      writeHidden(quizMaterialsInput, 'Δεν συμπληρώθηκε');
+      writeHidden(quizBudgetInput, 'Δεν συμπληρώθηκε');
+      writeHidden(quizSuggestedPackageInput, 'Δεν συμπληρώθηκε');
+      return;
+    }
+    let key = 'business';
+    let reason = 'Για τις περισσότερες τοπικές επιχειρήσεις, το Business Website είναι η πιο ισορροπημένη επιλογή.';
+    let tags = ['Business Website', 'Πλήρης εικόνα', '199€ βάση'];
+
+    if (goal.includes('Digital')) {
+      key = 'digital';
+      reason = 'Εφόσον ο βασικός στόχος είναι menu, ταιριάζει καλύτερα ένα καθαρό Digital Menu setup με κατηγορίες και mobile-first εμπειρία.';
+      tags = ['Digital menu', 'Για κινητά', 'Μετά από πρόταση'];
+    } else if (goal.includes('Premium') || hasWebsite.includes('redesign')) {
+      key = 'premium';
+      reason = 'Αφού υπάρχει υπάρχουσα παρουσία ή στόχος για redesign, το Premium Redesign δίνει πιο δυνατό αποτέλεσμα και καλύτερη δομή.';
+      tags = ['Premium Redesign', 'Redesign', '349€ βάση'];
+    } else if (goal.includes('Απλή')) {
+      key = 'starter';
+      reason = 'Για απλή παρουσίαση και γρήγορη online εικόνα, το Starter Website είναι αρκετό για να ξεκινήσεις σωστά.';
+      tags = ['Starter Website', 'Απλή παρουσίαση', '99€ βάση'];
+    } else if (business.includes('Freelancer')) {
+      key = 'landing';
+      reason = 'Για freelancer ή personal brand, μια δυνατή landing/personal page μπορεί να παρουσιάσει bio, υπηρεσίες και portfolio καθαρά.';
+      tags = ['Landing page', 'Personal brand', 'Μετά από πρόταση'];
+    }
+
+    if (budget.includes('Starter')) {
+      key = 'starter';
+      reason = 'Με απλό αρχικό budget, το Starter Website είναι η πιο καθαρή επιλογή για να βγει γρήγορα online μια σωστή παρουσία.';
+      tags = ['Starter Website', 'Απλό ξεκίνημα', '99€ βάση'];
+    } else if (budget.includes('Premium')) {
+      key = 'premium';
+      reason = 'Με premium στόχο, το Premium Redesign ταιριάζει καλύτερα για πιο δυνατή αισθητική, UX και conversion sections.';
+      tags = ['Premium Redesign', 'Premium εικόνα', '349€ βάση'];
+    } else if (budget.includes('Unsure')) {
+      key = 'unsure';
+      reason = 'Αφού δεν είσαι σίγουρος ακόμα, η καλύτερη επιλογή είναι να στείλεις τα στοιχεία και να πάρεις καθαρή πρόταση πριν αποφασίσεις.';
+      tags = ['Θέλω πρόταση', 'Χωρίς δέσμευση', 'Μετά από συζήτηση'];
+    }
+
+    if (materials.includes('Δεν έχω')) {
+      reason += ' Επειδή δεν υπάρχει ακόμα υλικό, ίσως χρειαστεί copywriting ή οργάνωση φωτογραφιών ως extra.';
+      tags.push('Χρειάζεται υλικό');
+    } else if (materials.includes('μερικά')) {
+      reason += ' Με λίγο υπάρχον υλικό, μπορούμε να οργανώσουμε ό,τι υπάρχει και να συμπληρώσουμε τα βασικά.';
+      tags.push('Οργάνωση υλικού');
+    }
+
+    currentQuizSuggestion = key;
+    const data = packageData[key] || packageData.business;
+    if (quizResultTitle) quizResultTitle.textContent = data.name;
+    if (quizResultText) quizResultText.textContent = reason;
+    renderQuizTags(tags);
+
+    writeHidden(quizBusinessInput, business);
+    writeHidden(quizHasWebsiteInput, hasWebsite);
+    writeHidden(quizGoalInput, goal);
+    writeHidden(quizMaterialsInput, materials);
+    writeHidden(quizBudgetInput, budget);
+    writeHidden(quizSuggestedPackageInput, data.label);
+  }
+
+  quizInputs.forEach((input) => {
+    input.addEventListener('change', updateQuizSuggestion);
+  });
+
+  if (applyQuizButton instanceof HTMLButtonElement) {
+    applyQuizButton.addEventListener('click', () => {
+      updateQuizSuggestion();
+      setSelectedPackage(currentQuizSuggestion);
+      const contactSection = document.querySelector('#contact');
+      if (contactSection) contactSection.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    });
+  }
+
+  updateQuizSuggestion();
+
   extraCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       syncMatchingExtras(checkbox);
@@ -410,6 +544,11 @@ document.documentElement.classList.add('js');
         window.requestAnimationFrame(() => panel.classList.add('is-updating'));
       });
     });
+  });
+
+  paymentRadios.forEach((radio) => {
+    if (!(radio instanceof HTMLInputElement)) return;
+    radio.addEventListener('change', updatePaymentPreference);
   });
 
   clearExtrasButtons.forEach((button) => {
@@ -429,6 +568,7 @@ document.documentElement.classList.add('js');
 
   if (packageCards.length) setSelectedPackage('business');
   else updateTotals();
+  updatePaymentPreference();
 
   if (form instanceof HTMLFormElement) {
     const submitButton = form.querySelector('.form-submit');
