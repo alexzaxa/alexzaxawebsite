@@ -9,13 +9,13 @@ The project is Greek-first, mobile-first, fast, animated, static-hosting friendl
 
 This version includes extra conversion tools for real website sales:
 
-- **Start a project quiz** that suggests Starter, Business, Premium, Digital Menu, Landing Page, or “not sure” based on the visitor's business type, existing website, goal, budget, and available material
+- **Ξεκίνα project quiz** that suggests Starter, Business, Premium, Digital Menu, Landing Page, or “not sure” based on the visitor's business type, existing website, goal, budget, and available material
 - **Before / After redesign section** explaining the value of redesigning an old or weak online presence
 - **Who this is for** section for cafés, restaurants, shops, barbers, service businesses, freelancers, and personal brands
 - **What you need to send me** checklist for business name, logo, photos, menu/services, social links, and Google Maps link
 - **Delivery timeline** section with usual time ranges for Starter, Business, and Premium/Redesign projects
 - **Monthly support** option as an extra for small changes after publishing
-- **Terms page** (`terms.html`) explaining deposit, payment flow, revisions, domain/hosting, and delivery basics
+- **Terms page** (`terms.html`) explaining deposit, payment flow, revisions, referrals, separate referral page, domain/hosting, and delivery basics
 - **Quick contact buttons** for email, Instagram, and website request
 - **No fake testimonials**; portfolio proof stays honest until real client projects can be added with permission
 
@@ -101,15 +101,15 @@ Cloudflare Pages reads `_headers` and applies the static security headers.
 
 Netlify also supports the `_headers` file.
 
-## Contact form setup
+## Φόρμα επικοινωνίας setup
 
 The form posts to:
 
 ```text
-https://formsubmit.co/alexzaxa70@gmail.com
+https://formsubmit.co/projects@alexzaxa.com
 ```
 
-FormSubmit may send a first-time confirmation email to `alexzaxa70@gmail.com`. Open that email and confirm the form. After confirmation, future website requests should arrive normally.
+FormSubmit may send a first-time confirmation email to `projects@alexzaxa.com`. Open that email and confirm the form. After confirmation, future website requests should arrive normally.
 
 The form includes:
 
@@ -123,7 +123,7 @@ The form includes:
 - Double-submit protection
 - Dynamic redirect to `thanks.html`
 - Privacy note linking to `privacy.html`
-- Selected package, selected extras, extras total, final estimated total, monthly support total, preferred payment method, and quiz answers/suggested package are sent with the request
+- Selected package, selected extras, extras total, final estimated total, monthly support total, preferred payment method, and quiz answers/suggested package are sent with the main request. Referrals are sent through the separate `referral.html` form.
 - Extras can be selected directly inside the contact/checkout form, not only from the package preview section
 - Payment is not taken on the website. The visitor chooses PayPal, bank transfer, or “we will discuss it”, and you send payment instructions manually after confirming the final price
 
@@ -164,7 +164,7 @@ Keep it simple and update it before using the website with real clients. For rep
 Search and replace these values:
 
 ```text
-alexzaxa70@gmail.com
+projects@alexzaxa.com
 @___zaxoss
 https://www.instagram.com/___zaxoss/
 ```
@@ -173,11 +173,11 @@ They appear in `index.html`, `privacy.html`, and this README.
 
 ## Change domain / SEO placeholders
 
-Before publishing with a real domain, search for `https://YOUR-DOMAIN-HERE/` and replace it with your final website URL. Update:
+Before publishing with a real domain, search for `https://alexzaxa.com/` and replace it with your final website URL. Update:
 
-- `https://YOUR-DOMAIN-HERE/` in `index.html`
-- `https://YOUR-DOMAIN-HERE/privacy.html` in `privacy.html`
-- `https://YOUR-DOMAIN-HERE/terms.html` in `terms.html`
+- `https://alexzaxa.com/` in `index.html`
+- `https://alexzaxa.com/privacy.html` in `privacy.html`
+- `https://alexzaxa.com/terms.html` in `terms.html`
 - URLs in `sitemap.xml`
 - Sitemap URL in `robots.txt`
 - `url` in the JSON-LD schema inside `index.html`
@@ -268,7 +268,7 @@ This version includes a GitHub Pages visual fix for cases where the page looks c
 What was changed:
 
 - CSS and JavaScript links now use relative paths with a cache-busting version query, for example `./styles.css?v=growth-tools-20260708`.
-- A `.nojekyll` file is included so GitHub Pages serves the project as a plain static site.
+- A `.nojekyll` file is περιλαμβάνεται so GitHub Pages serves the project as a plain static site.
 - Preview/demo links point directly to `index.html` files instead of folders.
 - The pricing/package section has a visible HTML fallback, so it still looks correct even if JavaScript loads late or fails.
 - The package section and the contact/checkout form include an interactive extras picker. Visitors can choose add-ons themselves before submitting, and the estimated total updates automatically in the request summary and hidden FormSubmit fields.
@@ -312,11 +312,11 @@ This version applies the latest audit recommendations:
 - Added more FAQ answers about payment, revisions, response time, domain/hosting, Instagram and Google Maps.
 - Added an honest trust section without fake testimonials or fake reviews.
 - Added a 24-hour response expectation near the contact form.
-- Replaced `your-domain.example` with the clearer placeholder `https://YOUR-DOMAIN-HERE/`.
+- Replaced `your-domain.example` with the clearer placeholder `https://alexzaxa.com/`.
 - Kept the project static-only with no client account system.
 - Added PayPal / bank transfer payment preference to the request form without turning the website into a real checkout.
 
-Before launch, replace `https://YOUR-DOMAIN-HERE/` in `index.html`, `privacy.html`, `terms.html`, `robots.txt`, and `sitemap.xml` with the final domain.
+Before launch, replace `https://alexzaxa.com/` in `index.html`, `privacy.html`, `terms.html`, `robots.txt`, and `sitemap.xml` with the final domain.
 
 ## Growth tools update
 
@@ -335,3 +335,8 @@ This version adds the requested sales features:
 
 The website still stays static-only and no payment is taken automatically.
 
+
+
+## Referral page
+
+`referral.html` is a separate static referral form. Use links such as `referral.html?ref=nikos` to auto-fill the referral code. Referral bonuses/discounts are confirmed manually.

@@ -10,7 +10,7 @@ Good for receiving email to a custom address and forwarding it to Gmail.
 1. Buy/add your domain in Cloudflare.
 2. Go to **Compute > Email Service > Email Routing**.
 3. Add your Gmail as a destination address and verify it.
-4. Create a route like `hello@yourdomain.gr -> alexzaxa70@gmail.com`.
+4. Create a route like `hello@yourdomain.gr -> projects@alexzaxa.com`.
 5. Let Cloudflare add the MX/TXT DNS records.
 
 Important: this is mainly forwarding/receiving. Sending from the custom address may need another SMTP/email provider.
@@ -43,4 +43,4 @@ For this website business, use Cloudflare forwarding or Zoho first.
 
 ## Contact form email
 
-The website contact form uses FormSubmit and sends quote requests to `alexzaxa70@gmail.com`. After publishing, send one test request and confirm the FormSubmit activation email if it appears.
+The website contact form uses FormSubmit and sends quote requests to `projects@alexzaxa.com`. After publishing, send one test request and confirm the FormSubmit activation email if it appears.
