@@ -80,7 +80,7 @@ document.documentElement.classList.add('js');
       time: 'Παράδοση: 3–7 ημέρες, ανάλογα με το υλικό',
       best: 'Κατάλληλο για απλή παρουσίαση, βασικές πληροφορίες και άμεση επικοινωνία.',
       includes: [
-        'One-page website',
+        'One-page ιστοσελίδα',
         'Mobile-first σχεδιασμός',
         'Βασικές πληροφορίες επιχείρησης',
         'Email / Instagram / χάρτης',
@@ -99,9 +99,9 @@ document.documentElement.classList.add('js');
       includes: [
         'Πολλαπλές ενότητες',
         'Gallery / προϊόντα / υπηρεσίες',
-        'Contact form',
-        'Google Maps & social links',
-        'Δομή για Instagram / Google Maps traffic'
+        'Φόρμα επικοινωνίας',
+        'Google Χάρτης & social links',
+        'Δομή για επισκέπτες από Instagram / Google Maps'
       ]
     },
     premium: {
@@ -110,7 +110,7 @@ document.documentElement.classList.add('js');
       price: 'Τιμή: 349€',
       priceValue: '349€',
       baseAmount: 349,
-      summary: 'Ιδανικό για επιχείρηση που έχει ήδη website ή θέλει πιο premium αποτέλεσμα με καλύτερη αισθητική, UX και εμπιστοσύνη.',
+      summary: 'Ιδανικό για επιχείρηση που έχει ήδη ιστοσελίδα ή θέλει πιο premium αποτέλεσμα με καλύτερη αισθητική, UX και εμπιστοσύνη.',
       time: 'Παράδοση: 7–14 ημέρες, ανάλογα με το project',
       best: 'Κατάλληλο για επιχειρήσεις που θέλουν ανασχεδιασμό, πιο δυνατή παρουσία και premium αίσθηση.',
       includes: [
@@ -118,13 +118,13 @@ document.documentElement.classList.add('js');
         'Καλύτερη αρχική σελίδα',
         'Premium αισθητική',
         'Καλύτερη εμπειρία σε κινητά',
-        'Πιο δυνατά CTA sections',
+        'Πιο δυνατά CTA ενότητες',
         'Βελτίωση δομής και περιεχομένου',
         'Βελτίωση ταχύτητας όπου γίνεται',
         'Βασικό SEO cleanup',
-        'Contact form',
-        'Social / Google Maps integration',
-        'Hosting guidance'
+        'Φόρμα επικοινωνίας',
+        'Σύνδεση με social / Google Maps',
+        'Καθοδήγηση hosting'
       ]
     },
     digital: {
@@ -158,7 +158,7 @@ document.documentElement.classList.add('js');
         'Καθαρό μήνυμα και CTA',
         'Mobile-first layout',
         'Βασικό SEO setup',
-        'Contact / social links'
+        'Φόρμα / social links'
       ]
     },
     unsure: {
@@ -217,6 +217,11 @@ document.documentElement.classList.add('js');
   const websiteTypeSelect = form ? form.querySelector('select[name="website_type"]') : null;
   const paymentRadios = form ? Array.from(form.querySelectorAll('input[name="preferred_payment_method"]')) : [];
   const contactPaymentMethod = document.querySelector('#contact-payment-method');
+  const referralCodeInput = document.querySelector('#referral-code-input');
+  const referredBusinessInput = document.querySelector('#referred-business-input');
+  const referralFromUrlInput = document.querySelector('#referral-from-url-input');
+  const referralSummaryInput = document.querySelector('#referral-summary-input');
+  const contactReferralSummary = document.querySelector('#contact-referral-summary');
   const quizInputs = Array.from(document.querySelectorAll('[data-project-quiz] input[type="radio"]'));
   const quizResultTitle = document.querySelector('#quiz-result-title');
   const quizResultText = document.querySelector('#quiz-result-text');
@@ -280,6 +285,40 @@ document.documentElement.classList.add('js');
     contactPaymentMethod.textContent = selectedPayment ? selectedPayment.value : 'Θα το συζητήσουμε';
   }
 
+  function cleanReferralValue(value) {
+    return String(value || '').trim().replace(/[<>]/g, '').slice(0, 80);
+  }
+
+  function getReferralSummary() {
+    const code = referralCodeInput instanceof HTMLInputElement ? cleanReferralValue(referralCodeInput.value) : '';
+    const business = referredBusinessInput instanceof HTMLInputElement ? cleanReferralValue(referredBusinessInput.value).slice(0, 120) : '';
+    if (code && business) return `${code} — προτεινόμενη επιχείρηση: ${business}`;
+    if (code) return code;
+    if (business) return `Προτεινόμενη επιχείρηση: ${business}`;
+    return 'Κανένα referral';
+  }
+
+  function updateReferralSummary() {
+    const summary = getReferralSummary();
+    if (contactReferralSummary) contactReferralSummary.textContent = summary;
+    if (referralSummaryInput instanceof HTMLInputElement) referralSummaryInput.value = summary;
+  }
+
+  function applyReferralFromUrl() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const ref = cleanReferralValue(params.get('ref') || params.get('referral') || params.get('r') || '');
+      if (!ref) return;
+      if (referralFromUrlInput instanceof HTMLInputElement) referralFromUrlInput.value = ref;
+      if (referralCodeInput instanceof HTMLInputElement && !referralCodeInput.value.trim()) {
+        referralCodeInput.value = ref;
+      }
+    } catch (error) {
+      // Ignore URL parsing errors on unusual local file paths.
+    }
+    updateReferralSummary();
+  }
+
   function syncMatchingExtras(changedCheckbox) {
     if (!(changedCheckbox instanceof HTMLInputElement)) return;
     const key = changedCheckbox.value;
@@ -301,7 +340,7 @@ document.documentElement.classList.add('js');
     }
     extras.forEach((extra) => {
       const li = document.createElement('li');
-      const priceText = extra.monthly > 0 ? `+${formatEuro(extra.monthly)}/μήνα` : extra.price > 0 ? `+${formatEuro(extra.price)}` : 'included';
+      const priceText = extra.monthly > 0 ? `+${formatEuro(extra.monthly)}/μήνα` : extra.price > 0 ? `+${formatEuro(extra.price)}` : 'περιλαμβάνεται';
       li.textContent = `${extra.label} (${priceText})`;
       listElement.appendChild(li);
     });
@@ -334,7 +373,7 @@ document.documentElement.classList.add('js');
 
     const extrasDescription = extras.length
       ? extras.map((extra) => {
-          const priceText = extra.monthly > 0 ? `+${formatEuro(extra.monthly)}/μήνα` : extra.price > 0 ? `+${formatEuro(extra.price)}` : 'included';
+          const priceText = extra.monthly > 0 ? `+${formatEuro(extra.monthly)}/μήνα` : extra.price > 0 ? `+${formatEuro(extra.price)}` : 'περιλαμβάνεται';
           return `${extra.label} (${priceText})`;
         }).join(', ')
       : 'Κανένα extra';
@@ -489,7 +528,7 @@ document.documentElement.classList.add('js');
       tags = ['Starter Website', 'Απλό ξεκίνημα', '99€ βάση'];
     } else if (budget.includes('Premium')) {
       key = 'premium';
-      reason = 'Με premium στόχο, το Premium Redesign ταιριάζει καλύτερα για πιο δυνατή αισθητική, UX και conversion sections.';
+      reason = 'Με premium στόχο, το Premium Redesign ταιριάζει καλύτερα για πιο δυνατή αισθητική, UX και conversion ενότητες.';
       tags = ['Premium Redesign', 'Premium εικόνα', '349€ βάση'];
     } else if (budget.includes('Unsure')) {
       key = 'unsure';
@@ -551,6 +590,12 @@ document.documentElement.classList.add('js');
     radio.addEventListener('change', updatePaymentPreference);
   });
 
+  [referralCodeInput, referredBusinessInput].forEach((input) => {
+    if (!(input instanceof HTMLInputElement)) return;
+    input.addEventListener('input', updateReferralSummary);
+    input.addEventListener('change', updateReferralSummary);
+  });
+
   clearExtrasButtons.forEach((button) => {
     if (!(button instanceof HTMLButtonElement)) return;
     button.addEventListener('click', () => {
@@ -569,6 +614,8 @@ document.documentElement.classList.add('js');
   if (packageCards.length) setSelectedPackage('business');
   else updateTotals();
   updatePaymentPreference();
+  applyReferralFromUrl();
+  updateReferralSummary();
 
   if (form instanceof HTMLFormElement) {
     const submitButton = form.querySelector('.form-submit');

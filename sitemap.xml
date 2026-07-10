@@ -3,6 +3,7 @@
   <url><loc>https://YOUR-DOMAIN-HERE/</loc><priority>1.0</priority></url>
   <url><loc>https://YOUR-DOMAIN-HERE/privacy.html</loc><priority>0.3</priority></url>
   <url><loc>https://YOUR-DOMAIN-HERE/terms.html</loc><priority>0.3</priority></url>
+  <url><loc>https://YOUR-DOMAIN-HERE/referral.html</loc><priority>0.6</priority></url>
   <url><loc>https://YOUR-DOMAIN-HERE/demos/index.html</loc><priority>0.8</priority></url>
   <url><loc>https://YOUR-DOMAIN-HERE/demos/cafe/index.html</loc><priority>0.7</priority></url>
   <url><loc>https://YOUR-DOMAIN-HERE/demos/restaurant/index.html</loc><priority>0.7</priority></url>
