@@ -71,11 +71,11 @@ document.documentElement.classList.add('js');
 
   const packageData = {
     starter: {
-      label: 'Starter Website — 99€',
+      label: 'Starter Website — 169€',
       name: 'Starter Website',
-      price: 'Τιμή: 99€',
-      priceValue: '99€',
-      baseAmount: 99,
+      price: 'Τιμή: 169€',
+      priceValue: '169€',
+      baseAmount: 169,
       summary: 'Ιδανικό για επιχείρηση που θέλει γρήγορη, καθαρή και επαγγελματική online παρουσία χωρίς περίπλοκες ενότητες.',
       time: 'Παράδοση: 3–7 ημέρες, ανάλογα με το υλικό',
       best: 'Κατάλληλο για απλή παρουσίαση, βασικές πληροφορίες και άμεση επικοινωνία.',
@@ -88,11 +88,11 @@ document.documentElement.classList.add('js');
       ]
     },
     business: {
-      label: 'Business Website — 199€',
+      label: 'Business Website — 269€',
       name: 'Business Website',
-      price: 'Τιμή: 199€',
-      priceValue: '199€',
-      baseAmount: 199,
+      price: 'Τιμή: 269€',
+      priceValue: '269€',
+      baseAmount: 269,
       summary: 'Ιδανικό για καφέ, εστιατόριο, κατάστημα ή υπηρεσία που θέλει πλήρη και επαγγελματική παρουσία.',
       time: 'Παράδοση: 5–10 ημέρες, ανάλογα με το project',
       best: 'Κατάλληλο για επιχειρήσεις που θέλουν ολοκληρωμένη εικόνα και περισσότερες ενότητες.',
@@ -105,11 +105,11 @@ document.documentElement.classList.add('js');
       ]
     },
     premium: {
-      label: 'Premium Redesign — 349€',
+      label: 'Premium Redesign — 419€',
       name: 'Premium Redesign',
-      price: 'Τιμή: 349€',
-      priceValue: '349€',
-      baseAmount: 349,
+      price: 'Τιμή: 419€',
+      priceValue: '419€',
+      baseAmount: 419,
       summary: 'Ιδανικό για επιχείρηση που έχει ήδη ιστοσελίδα ή θέλει πιο premium αποτέλεσμα με καλύτερη αισθητική, UX και εμπιστοσύνη.',
       time: 'Παράδοση: 7–14 ημέρες, ανάλογα με το project',
       best: 'Κατάλληλο για επιχειρήσεις που θέλουν ανασχεδιασμό, πιο δυνατή παρουσία και premium αίσθηση.',
@@ -502,7 +502,7 @@ document.documentElement.classList.add('js');
     }
     let key = 'business';
     let reason = 'Για τις περισσότερες τοπικές επιχειρήσεις, το Business Website είναι η πιο ισορροπημένη επιλογή.';
-    let tags = ['Business Website', 'Πλήρης εικόνα', '199€ βάση'];
+    let tags = ['Business Website', 'Πλήρης εικόνα', '269€ βάση'];
 
     if (goal.includes('Digital')) {
       key = 'digital';
@@ -511,11 +511,11 @@ document.documentElement.classList.add('js');
     } else if (goal.includes('Premium') || hasWebsite.includes('redesign')) {
       key = 'premium';
       reason = 'Αφού υπάρχει υπάρχουσα παρουσία ή στόχος για redesign, το Premium Redesign δίνει πιο δυνατό αποτέλεσμα και καλύτερη δομή.';
-      tags = ['Premium Redesign', 'Redesign', '349€ βάση'];
+      tags = ['Premium Redesign', 'Redesign', '419€ βάση'];
     } else if (goal.includes('Απλή')) {
       key = 'starter';
       reason = 'Για απλή παρουσίαση και γρήγορη online εικόνα, το Starter Website είναι αρκετό για να ξεκινήσεις σωστά.';
-      tags = ['Starter Website', 'Απλή παρουσίαση', '99€ βάση'];
+      tags = ['Starter Website', 'Απλή παρουσίαση', '169€ βάση'];
     } else if (business.includes('Freelancer')) {
       key = 'landing';
       reason = 'Για freelancer ή personal brand, μια δυνατή landing/personal page μπορεί να παρουσιάσει bio, υπηρεσίες και portfolio καθαρά.';
@@ -525,11 +525,11 @@ document.documentElement.classList.add('js');
     if (budget.includes('Starter')) {
       key = 'starter';
       reason = 'Με απλό αρχικό budget, το Starter Website είναι η πιο καθαρή επιλογή για να βγει γρήγορα online μια σωστή παρουσία.';
-      tags = ['Starter Website', 'Απλό ξεκίνημα', '99€ βάση'];
+      tags = ['Starter Website', 'Απλό ξεκίνημα', '169€ βάση'];
     } else if (budget.includes('Premium')) {
       key = 'premium';
       reason = 'Με premium στόχο, το Premium Redesign ταιριάζει καλύτερα για πιο δυνατή αισθητική, UX και conversion ενότητες.';
-      tags = ['Premium Redesign', 'Premium εικόνα', '349€ βάση'];
+      tags = ['Premium Redesign', 'Premium εικόνα', '419€ βάση'];
     } else if (budget.includes('Unsure')) {
       key = 'unsure';
       reason = 'Αφού δεν είσαι σίγουρος ακόμα, η καλύτερη επιλογή είναι να στείλεις τα στοιχεία και να πάρεις καθαρή πρόταση πριν αποφασίσεις.';
